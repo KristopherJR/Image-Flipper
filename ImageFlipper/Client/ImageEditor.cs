@@ -18,14 +18,40 @@ namespace Client
     /// </summary>
     public partial class ImageEditor : Form
     {
-        public ImageEditor()
+        private Image _editImage;
+        public ImageEditor(Image pEditImage)
         {
             InitializeComponent();
+            _editImage = pEditImage;
+        }
+        private void ImageEditor_Load(object sender, EventArgs e)
+        {
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.Image = _editImage;
         }
 
         private void RotateClockwiseButton_Click(object sender, EventArgs e)
         {
+            _editImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            pictureBox1.Image = _editImage;
+        }
 
+        private void RotateCounterClockwiseButton_Click(object sender, EventArgs e)
+        {
+            _editImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            pictureBox1.Image = _editImage;
+        }
+
+        private void FlipHorizontalButton_Click(object sender, EventArgs e)
+        {
+            _editImage.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            pictureBox1.Image = _editImage;
+        }
+
+        private void FlipVerticalButton_Click(object sender, EventArgs e)
+        {
+            _editImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            pictureBox1.Image = _editImage;
         }
     }
 }

@@ -35,6 +35,10 @@ namespace Client
             this.RotateClockwiseButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.ImageFlipperLabel = new System.Windows.Forms.Label();
+            this.EditorLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +53,7 @@ namespace Client
             this.FlipVerticalButton.Size = new System.Drawing.Size(50, 50);
             this.FlipVerticalButton.TabIndex = 4;
             this.FlipVerticalButton.UseVisualStyleBackColor = true;
+            this.FlipVerticalButton.Click += new System.EventHandler(this.FlipVerticalButton_Click);
             // 
             // FlipHorizontalButton
             // 
@@ -59,6 +64,7 @@ namespace Client
             this.FlipHorizontalButton.Size = new System.Drawing.Size(50, 50);
             this.FlipHorizontalButton.TabIndex = 3;
             this.FlipHorizontalButton.UseVisualStyleBackColor = true;
+            this.FlipHorizontalButton.Click += new System.EventHandler(this.FlipHorizontalButton_Click);
             // 
             // RotateCounterClockwiseButton
             // 
@@ -69,6 +75,7 @@ namespace Client
             this.RotateCounterClockwiseButton.Size = new System.Drawing.Size(50, 50);
             this.RotateCounterClockwiseButton.TabIndex = 2;
             this.RotateCounterClockwiseButton.UseVisualStyleBackColor = true;
+            this.RotateCounterClockwiseButton.Click += new System.EventHandler(this.RotateCounterClockwiseButton_Click);
             // 
             // RotateClockwiseButton
             // 
@@ -83,7 +90,7 @@ namespace Client
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(150, 20);
+            this.pictureBox1.Location = new System.Drawing.Point(150, 100);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(300, 300);
@@ -106,7 +113,7 @@ namespace Client
             this.tableLayoutPanel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(150, 335);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(150, 450);
             this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(300, 50);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(5);
@@ -115,16 +122,59 @@ namespace Client
             this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 66);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(250, 530);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(100, 30);
+            this.SaveButton.TabIndex = 6;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(500, 10);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // ImageFlipperLabel
+            // 
+            this.ImageFlipperLabel.AutoSize = true;
+            this.ImageFlipperLabel.Font = new System.Drawing.Font("KG Chasing Cars", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImageFlipperLabel.Location = new System.Drawing.Point(140, 10);
+            this.ImageFlipperLabel.Name = "ImageFlipperLabel";
+            this.ImageFlipperLabel.Size = new System.Drawing.Size(320, 47);
+            this.ImageFlipperLabel.TabIndex = 8;
+            this.ImageFlipperLabel.Text = "Image Flipper";
+            // 
+            // EditorLabel
+            // 
+            this.EditorLabel.AutoSize = true;
+            this.EditorLabel.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditorLabel.Location = new System.Drawing.Point(260, 66);
+            this.EditorLabel.Name = "EditorLabel";
+            this.EditorLabel.Size = new System.Drawing.Size(79, 30);
+            this.EditorLabel.TabIndex = 9;
+            this.EditorLabel.Text = "Editor";
+            // 
             // ImageEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 461);
+            this.ClientSize = new System.Drawing.Size(584, 611);
+            this.Controls.Add(this.EditorLabel);
+            this.Controls.Add(this.ImageFlipperLabel);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ImageEditor";
             this.Text = "ImageEditor";
+            this.Load += new System.EventHandler(this.ImageEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -140,5 +190,9 @@ namespace Client
         private System.Windows.Forms.Button FlipHorizontalButton;
         private System.Windows.Forms.Button FlipVerticalButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label ImageFlipperLabel;
+        private System.Windows.Forms.Label EditorLabel;
     }
 }

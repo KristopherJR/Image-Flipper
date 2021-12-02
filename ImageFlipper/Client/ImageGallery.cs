@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -131,7 +132,7 @@ namespace Client
                         // display the image in the picture box:
                         newPicture.Image = new Bitmap(open.FileName);
                         // image file path  
-                        textBox1.Text = open.FileName;
+                        textBox1.Text = Path.GetFileName(open.FileName);
                     }
                     else
                     {
@@ -158,7 +159,7 @@ namespace Client
             }
             else
             {
-                ImageEditor newEditor = new ImageEditor();
+                ImageEditor newEditor = new ImageEditor(_selectedPictureBox.Image);
                 newEditor.Show();
             }
         }
