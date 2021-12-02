@@ -21,7 +21,7 @@ namespace Client
     /// </summary>
     public partial class ImageGallery : Form, IImageGallery
     {
-        private Dictionary<string,Image> _images;
+        private List<String> _imageFilePaths;
         private Dictionary<string, PictureBox> _pictureBoxes;
         private PictureBox _selectedPictureBox;
         private PictureBox _previouslySelectedPictureBox;
@@ -32,8 +32,8 @@ namespace Client
 
         private void ImageGallery_Load(object sender, EventArgs e)
         {
-            // INITIALISE the Dictionaries:
-            _images = new Dictionary<string, Image>();
+            // INITIALISE the collection classes:
+            _imageFilePaths = new List<String>();
             _pictureBoxes = new Dictionary<string, PictureBox>();
 
         }
@@ -98,7 +98,7 @@ namespace Client
         private void LoadImageButton_Click(object sender, EventArgs e)
         {
             // CHECK that the user hasn't already loaded 10 images:
-            if(_images.Count < 10)
+            if(_imageFilePaths.Count < 10)
             {
                 // CREATE a new OpenFileDialog so that the user can load an image from the File Explorer:
                 OpenFileDialog open = new OpenFileDialog();
@@ -110,15 +110,13 @@ namespace Client
                 {
 
                     // CHECK that the image selected has NOT already been loaded:
-                    if (!_images.ContainsKey(open.FileName))
+                    if (!_imageFilePaths.Contains(open.FileName))
                     {
-                        // ADD the image to the _images Dictionary. Use the FileName as the key:
-                        _images.Add(open.FileName, Image.FromFile(open.FileName));
+                        // ADD the image file path to the List:
+                        _imageFilePaths.Add(open.FileName);
                         // CREATE a new PictureBox, call it newPicture:
                         PictureBox newPicture = new PictureBox();
                         // CREATE a mouse click handler for the newPicture:
-                        
-                        
                         newPicture.MouseClick += new MouseEventHandler(newPicture_Click);
                         // ADD newPicture to the _pictureBoxes dict. Use the same FileName as the key:
                         _pictureBoxes.Add(open.FileName, newPicture);
@@ -150,6 +148,13 @@ namespace Client
             }
             
         }
+
+        private void SendPathToServer(String pImagePath)
+        {
+
+        }
+
+        
 
         private void EditImageButton_Click(object sender, EventArgs e)
         {
