@@ -14,7 +14,7 @@ namespace Client
     /// ImageGallery allows a user to load in images for manipulation.
     /// 
     /// Author: Kristopher Randle
-    /// Version: 02/12/2021
+    /// Version: 02/12/2021, 0.2
     /// 
     /// OpenFileDialog code from: https://www.c-sharpcorner.com/UploadFile/mirfan00/uploaddisplay-image-in-picture-box-using-C-Sharp/
     /// </summary>
@@ -23,7 +23,7 @@ namespace Client
         private Dictionary<string,Image> _images;
         private Dictionary<string, PictureBox> _pictureBoxes;
         private PictureBox _selectedPictureBox;
-        private PictureBox _previouslySelectPictureBox;
+        private PictureBox _previouslySelectedPictureBox;
         public ImageGallery()
         {
             InitializeComponent();    
@@ -39,39 +39,55 @@ namespace Client
         /// <summary>
         /// Mouse click handler for each new image that is created. Allows an image to be selected.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The picturebox that has been clicked on.</param>
+        /// <param name="e">MouseEventArgs</param>
         private void newPicture_Click(object sender, MouseEventArgs e)
         {
+            // STORe the sender as a PictureBox, call it clickedBox:
             PictureBox clickedBox = sender as PictureBox;
 
-            // if no box is selected
-            if (_selectedPictureBox == null && _previouslySelectPictureBox == null)
+            // use case #1 - no boxes selected
+            if (_selectedPictureBox == null && _previouslySelectedPictureBox == null)
             {
-                // select the clicked box
+                // SET the selected box to the clicked box:
                 _selectedPictureBox = clickedBox;
-                _previouslySelectPictureBox = clickedBox;
+                // SET the previously selected box to the clicked box:
+                _previouslySelectedPictureBox = clickedBox;
+                // SET the colour of the selected box to green:
                 _selectedPictureBox.BackColor = Color.FromArgb(142, 205, 117);
+                // PRINT #1 for debugging:
+                Console.WriteLine("#1");
+                // BREAK the method execution by returning:
                 return;
             }
-
-            if (_selectedPictureBox == clickedBox)
-            {
-                _selectedPictureBox.BackColor = Color.Empty;
-                _previouslySelectPictureBox.BackColor = Color.Empty;
-                _selectedPictureBox = null;
-                _previouslySelectPictureBox = null;
-                return;
-            }
-
+            // use case #2 - user clicks a different box to the selected box
             if (_selectedPictureBox != clickedBox)
             {
-                _previouslySelectPictureBox = _selectedPictureBox;
+                // SET the previously selected box to the currently selected box:
+                _previouslySelectedPictureBox = _selectedPictureBox;
+                // SET the selected box to the clicked box:
                 _selectedPictureBox = clickedBox;
-
-                _previouslySelectPictureBox.BackColor = Color.Empty;
+                // SET the colour of the previous box to empty:
+                _previouslySelectedPictureBox.BackColor = Color.Empty;
+                // SET the colour of the newly selected box to green:
                 _selectedPictureBox.BackColor = Color.FromArgb(142, 205, 117);
+                // PRINT #2 for debugging:
+                Console.WriteLine("#2");
+                // BREAK the method execution by returning:
+                return;
             }
+            // use case #3 - use clicks the same box as the selected box
+            if (_selectedPictureBox == clickedBox)
+            {
+                // SET the color of the selected box to empty:
+                _selectedPictureBox.BackColor = Color.Empty;
+                // SET the selected box to null:
+                _selectedPictureBox = null;
+                // SET the previously selected box to null:
+                _previouslySelectedPictureBox = null;
+                // PRINT #3 for debugging:
+                Console.WriteLine("#3");
+            }  
         }
         /// <summary>
         /// Called each time the Load Image button is clicked.
