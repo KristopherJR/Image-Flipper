@@ -8,3 +8,4 @@ C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.csproj
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.exe
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.pdb
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.ImageEditor.resources

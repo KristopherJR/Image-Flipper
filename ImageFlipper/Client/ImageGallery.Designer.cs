@@ -54,6 +54,7 @@ namespace Client
             this.EditImageButton.TabIndex = 11;
             this.EditImageButton.Text = "Edit Image";
             this.EditImageButton.UseVisualStyleBackColor = true;
+            this.EditImageButton.Click += new System.EventHandler(this.EditImageButton_Click);
             // 
             // ExitButton
             // 

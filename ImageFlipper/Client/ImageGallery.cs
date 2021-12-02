@@ -122,7 +122,7 @@ namespace Client
                         // ADD newPicture to the _pictureBoxes dict. Use the same FileName as the key:
                         _pictureBoxes.Add(open.FileName, newPicture);
                         // SET its Size and SizeMode:
-                        newPicture.SizeMode = PictureBoxSizeMode.CenterImage;
+                        newPicture.SizeMode = PictureBoxSizeMode.StretchImage;
                         newPicture.Size = new Size(150, 150);
 
                         // ADD newPicture to the flowLayoutPanel:
@@ -148,6 +148,19 @@ namespace Client
                 Console.WriteLine("Sorry fam, only 10 images allowed at a time.");
             }
             
+        }
+
+        private void EditImageButton_Click(object sender, EventArgs e)
+        {
+            if(_selectedPictureBox == null)
+            {
+                Console.WriteLine("Click an image first that you wish to edit.");
+            }
+            else
+            {
+                ImageEditor newEditor = new ImageEditor();
+                newEditor.Show();
+            }
         }
     }
 }
