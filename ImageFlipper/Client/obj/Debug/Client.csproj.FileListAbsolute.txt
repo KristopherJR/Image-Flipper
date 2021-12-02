@@ -1,11 +1,11 @@
-C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\bin\Debug\Client.exe.config
-C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\bin\Debug\Client.exe
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\bin\Debug\Client.pdb
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.csproj.AssemblyReference.cache
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.ImageGallery.resources
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.Properties.Resources.resources
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.csproj.GenerateResource.cache
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
-C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.exe
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.pdb
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.ImageEditor.resources
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\bin\Debug\Client.dll.config
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\bin\Debug\Client.dll
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Client\obj\Debug\Client.dll

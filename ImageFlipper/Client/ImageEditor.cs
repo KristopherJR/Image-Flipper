@@ -16,7 +16,7 @@ namespace Client
     /// Author: Kristopher Randle
     /// Version: 0.1, 02-12-2021
     /// </summary>
-    public partial class ImageEditor : Form
+    public partial class ImageEditor : Form, IImageEditor
     {
         private Image _editImage;
         public ImageEditor(Image pEditImage)

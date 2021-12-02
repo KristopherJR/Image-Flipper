@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3DDB5027-9909-485B-98E8-338137FA0DBE}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Client</RootNamespace>
-    <AssemblyName>Client</AssemblyName>
+    <ProjectGuid>{D3DEE437-7CE1-4D7B-8553-17141BE1B744}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Main</RootNamespace>
+    <AssemblyName>Main</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -49,29 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="IClient.cs" />
-    <Compile Include="IImageEditor.cs" />
-    <Compile Include="IImageGallery.cs" />
-    <Compile Include="ImageEditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImageEditor.Designer.cs">
-      <DependentUpon>ImageEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ImageGallery.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImageGallery.Designer.cs">
-      <DependentUpon>ImageGallery.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Controller.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ImageEditor.resx">
-      <DependentUpon>ImageEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImageGallery.resx">
-      <DependentUpon>ImageGallery.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -80,7 +57,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -96,13 +72,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\ProgramAssets\rotate_clockwise.png" />
-    <None Include="bin\Debug\ProgramAssets\rotate_countclockwise.png" />
-    <None Include="bin\Debug\ProgramAssets\horizontal_flip.png" />
-    <None Include="bin\Debug\ProgramAssets\vertical_flip.png" />
-    <Content Include="JavaFish.png" />
-    <Content Include="OrangeFish.png" />
-    <Content Include="PiranhaGreen.png" />
+    <ProjectReference Include="..\Client\Client.csproj">
+      <Project>{3DDB5027-9909-485B-98E8-338137FA0DBE}</Project>
+      <Name>Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server\Server.csproj">
+      <Project>{f31b6fb1-94ff-4e64-af02-eaab14fce678}</Project>
+      <Name>Server</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

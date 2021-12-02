@@ -19,7 +19,7 @@ namespace Client
     /// 
     /// OpenFileDialog code from: https://www.c-sharpcorner.com/UploadFile/mirfan00/uploaddisplay-image-in-picture-box-using-C-Sharp/
     /// </summary>
-    public partial class ImageGallery : Form
+    public partial class ImageGallery : Form, IImageGallery
     {
         private Dictionary<string,Image> _images;
         private Dictionary<string, PictureBox> _pictureBoxes;

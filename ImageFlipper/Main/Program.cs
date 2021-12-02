@@ -1,11 +1,16 @@
-﻿using System;
+﻿using Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Client
+namespace Main
 {
+    /// <summary>
+    /// Author: Kristopher Randle
+    /// Version: 0.1, 02-12-21
+    /// </summary>
     static class Program
     {
         /// <summary>
@@ -16,7 +21,7 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ImageGallery());
+            Controller controller = new Controller();
         }
     }
 }
