@@ -68,11 +68,17 @@ namespace Main
             (_server as Server.Server).RotateImageCounterClockwise(pUid);
             _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
         }
-
+        /// <summary>
+        /// Allows a user to save their changes and overwrite the image on the disk.
+        /// </summary>
+        /// <param name="pUid">The unique identifier for the image to be saved.</param>
         public void SaveImage(string pUid)
         {
-            
-            
+            // RETRIEVE the image from the server that the user has edited and save it to its original directory, overwriting it:
+            (_server.GetImage(pUid, 300, 300)).Save(pUid);
+            // OUTPUT a confirmation to the console that the save was succesful and provide the save directory:
+            Console.WriteLine(pUid);
+            Console.WriteLine("Image Sucessfully Overwritten!");
         }
         /// <summary>
         /// Allows the user to save a copy of their modified fish masterpiece!
