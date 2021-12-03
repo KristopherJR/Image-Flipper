@@ -38,10 +38,8 @@ namespace Client
             get { return _selectedPictureBox; }
         }
         #endregion
-        public ImageGallery(SendPathToServerDelegate pSendPathToServer, PrimeEditorDelegate pPrimeEditor)
+        public ImageGallery()
         {
-            _sendPathToServer = pSendPathToServer;
-            _primeEditor = pPrimeEditor;
             ControlBox = false;
             InitializeComponent();    
         }
@@ -52,6 +50,13 @@ namespace Client
             _pictureBoxes = new Dictionary<string, PictureBox>();
 
         }
+
+        public void Subscribe(SendPathToServerDelegate pSendPathToServer, PrimeEditorDelegate pPrimeEditor)
+        {
+            _sendPathToServer = pSendPathToServer;
+            _primeEditor = pPrimeEditor;
+        }
+
         /// <summary>
         /// Mouse click handler for each new image that is created. Allows an image to be selected.
         /// </summary>
@@ -192,5 +197,7 @@ namespace Client
         {
             this.Close();
         }
+
+        
     }
 }

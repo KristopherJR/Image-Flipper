@@ -52,7 +52,8 @@ namespace Client
         public Form Run(SendPathToServerDelegate pSendPathToServer, RotateImageClockwiseDelegate pRCW, RotateImageCounterClockwiseDelegate pRCCW, FlipImageHorizontalDelegate pFIH, FlipImageVerticalDelegate pFIV, SaveImageDelegate pSaveImage, SaveImageCopyDelegate pSaveImageCopy)
         {
             // INITIALISE the _imageGallery:
-            _imageGallery = new ImageGallery(pSendPathToServer, PrimeEditor);
+            _imageGallery = new ImageGallery();
+            _imageGallery.Subscribe(pSendPathToServer, PrimeEditor);
             _imageEditor = new ImageEditor(pRCW, pRCCW, pFIH, pFIV, pSaveImage, pSaveImageCopy);
             // RETURN it as a form to start the application:
             return _imageGallery as Form;

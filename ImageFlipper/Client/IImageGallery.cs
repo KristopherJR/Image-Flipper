@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Main;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Client
 {
     /// <summary>
     /// Author: Kristopher Randle
-    /// Version: 0.1, 02-12-21
+    /// Version: 0.2, 03-12-21
     /// </summary>
     public interface IImageGallery
     {
@@ -18,6 +19,8 @@ namespace Client
         /// Property for the picture box the user currently has selected.
         /// </summary>
         PictureBox SelectedPictureBox { get; }
+
+        void Subscribe(SendPathToServerDelegate pSendPathToServer, PrimeEditorDelegate pPrimeEditor);
 
         /// <summary>
         /// Adds an image to the GUI Image Gallery, this should be provided by the server.
