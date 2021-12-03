@@ -21,10 +21,10 @@ namespace Client
     {
         private Image _editImage;
         private String _editImageUid;
-        private RotateImageClockwiseDelegate _RCW;
-        private RotateImageCounterClockwiseDelegate _RCCW;
-        private FlipImageHorizontalDelegate _FIH;
-        private FlipImageVerticalDelegate _FIV;
+        private RotateImageClockwiseDelegate _RotateImageClockwise;
+        private RotateImageCounterClockwiseDelegate _RotateImageCounterClockwise;
+        private FlipImageHorizontalDelegate _FlipImageHorizontal;
+        private FlipImageVerticalDelegate _FlipImageVertical;
 
         #region PROPERTIES
         public Image EditImage
@@ -45,10 +45,10 @@ namespace Client
         public ImageEditor(RotateImageClockwiseDelegate pRCW, RotateImageCounterClockwiseDelegate pRCCW, FlipImageHorizontalDelegate pFIH, FlipImageVerticalDelegate pFIV)
         {
             // SUBSCRIBE to the delegates:
-            _RCW = pRCW;
-            _RCCW = pRCCW;
-            _FIH = pFIH;
-            _FIV = pFIV;
+            _RotateImageClockwise = pRCW;
+            _RotateImageCounterClockwise = pRCCW;
+            _FlipImageHorizontal = pFIH;
+            _FlipImageVertical = pFIV;
             InitializeComponent();
             
         }
@@ -59,25 +59,22 @@ namespace Client
 
         private void RotateClockwiseButton_Click(object sender, EventArgs e)
         {
-            _RCW(_editImageUid);
+            _RotateImageClockwise(_editImageUid);
         }
 
         private void RotateCounterClockwiseButton_Click(object sender, EventArgs e)
         {
-            _editImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            pictureBox1.Image = _editImage;
+            _RotateImageCounterClockwise(_editImageUid);
         }
 
         private void FlipHorizontalButton_Click(object sender, EventArgs e)
         {
-            _editImage.RotateFlip(RotateFlipType.RotateNoneFlipY);
-            pictureBox1.Image = _editImage;
+            _FlipImageHorizontal(_editImageUid);
         }
 
         private void FlipVerticalButton_Click(object sender, EventArgs e)
         {
-            _editImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            pictureBox1.Image = _editImage;
+            _FlipImageVertical(_editImageUid);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Main
             _client = new Client.Client();
             _server = new Server.Server();
             // RUN the application by calling the clients run method:
-            Application.Run(_client.Run(SendPathToServer, RotateImageClockwise, RotateImageCounterClockwise, FlipImageHorizontal, RotateImageVertical));
+            Application.Run(_client.Run(SendPathToServer, RotateImageClockwise, RotateImageCounterClockwise, FlipImageHorizontal, FlipImageVertical));
         }
 
         public void SendPathToServer(IList<String> pImagePaths)
@@ -48,23 +48,27 @@ namespace Main
             
         }
 
+        
+        public void FlipImageHorizontal(string pUid)
+        {
+            (_server as Server.Server).HorizontalFlipImage(pUid);
+            _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
+        }
+        public void FlipImageVertical(string pUid)
+        {
+            (_server as Server.Server).VerticalFlipImage(pUid);
+            _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
+        }
         public void RotateImageClockwise(string pUid)
         {
             Console.WriteLine("delegate fired!!!");
             _server.RotateImage(pUid);
             _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
         }
-        public void RotateImageCounterClockwise(string uId)
+        public void RotateImageCounterClockwise(string pUid)
         {
-
-        }
-        public void FlipImageHorizontal(string uId)
-        {
-
-        }
-        public void RotateImageVertical(string uId)
-        {
-
+            (_server as Server.Server).RotateImageCounterClockwise(pUid);
+            _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
         }
     }
 }
