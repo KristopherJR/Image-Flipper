@@ -64,6 +64,7 @@ namespace Client
             this.ExitButton.TabIndex = 12;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // flowLayoutPanel1
             // 

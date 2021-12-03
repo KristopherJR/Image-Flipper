@@ -42,6 +42,7 @@ namespace Client
         {
             _sendPathToServer = pSendPathToServer;
             _primeEditor = pPrimeEditor;
+            ControlBox = false;
             InitializeComponent();    
         }
 
@@ -119,24 +120,33 @@ namespace Client
             // OPEN the File Explorer and wait for the user to select an image file:
             if (open.ShowDialog() == DialogResult.OK)
             {
-                // CREATE a new PictureBox, call it newPicture:
-                PictureBox newPicture = new PictureBox();
-                // CREATE a mouse click handler for the newPicture:
-                newPicture.MouseClick += new MouseEventHandler(newPicture_Click);
-                // ADD newPicture to the _pictureBoxes dict. Use the same FileName as the key:
-                _pictureBoxes.Add(open.FileName, newPicture);
-                // SET its Size and SizeMode:
-                newPicture.SizeMode = PictureBoxSizeMode.StretchImage;
-                newPicture.Size = new Size(150, 150);
+                // IF the image hasn't already been added to the gallery:
+                if(!_pictureBoxes.ContainsKey(open.FileName))
+                {
+                    // CREATE a new PictureBox, call it newPicture:
+                    PictureBox newPicture = new PictureBox();
+                    // CREATE a mouse click handler for the newPicture:
+                    newPicture.MouseClick += new MouseEventHandler(newPicture_Click);
+                    // ADD newPicture to the _pictureBoxes dict. Use the same FileName as the key:
+                    _pictureBoxes.Add(open.FileName, newPicture);
+                    // SET its Size and SizeMode:
+                    newPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+                    newPicture.Size = new Size(150, 150);
 
-                // ADD newPicture to the flowLayoutPanel:
-                flowLayoutPanel1.Controls.Add(newPicture);
-                IList<String> _imageFilePath = new List<String>();
-                _imageFilePath.Add(open.FileName);
-                // SEND the image path to the server by calling the delegate method in controller:
-                _sendPathToServer(_imageFilePath);
-                // image file path
-                textBox1.Text = Path.GetFileName(open.FileName);
+                    // ADD newPicture to the flowLayoutPanel:
+                    flowLayoutPanel1.Controls.Add(newPicture);
+                    IList<String> _imageFilePath = new List<String>();
+                    _imageFilePath.Add(open.FileName);
+                    // SEND the image path to the server by calling the delegate method in controller:
+                    _sendPathToServer(_imageFilePath);
+                    // image file path
+                    textBox1.Text = Path.GetFileName(open.FileName);
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, you've already added that image! blub!");
+                }
+                
             }
         }
 
@@ -176,6 +186,11 @@ namespace Client
                 // SIGNAL for the client to prime the editor:
                 _primeEditor(_selectedPictureBox.Image, _selectedImageUid);  
             }
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

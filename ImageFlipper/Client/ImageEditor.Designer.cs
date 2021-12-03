@@ -36,9 +36,10 @@ namespace Client
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.CloseEditorButton = new System.Windows.Forms.Button();
             this.ImageFlipperLabel = new System.Windows.Forms.Label();
             this.EditorLabel = new System.Windows.Forms.Label();
+            this.SaveACopyButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -124,21 +125,23 @@ namespace Client
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(250, 530);
+            this.SaveButton.Location = new System.Drawing.Point(166, 530);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(100, 30);
             this.SaveButton.TabIndex = 6;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // button2
+            // CloseEditorButton
             // 
-            this.button2.Location = new System.Drawing.Point(500, 10);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.CloseEditorButton.Location = new System.Drawing.Point(500, 10);
+            this.CloseEditorButton.Name = "CloseEditorButton";
+            this.CloseEditorButton.Size = new System.Drawing.Size(75, 23);
+            this.CloseEditorButton.TabIndex = 7;
+            this.CloseEditorButton.Text = "Close";
+            this.CloseEditorButton.UseVisualStyleBackColor = true;
+            this.CloseEditorButton.Click += new System.EventHandler(this.CloseEditorButton_Click);
             // 
             // ImageFlipperLabel
             // 
@@ -160,14 +163,25 @@ namespace Client
             this.EditorLabel.TabIndex = 9;
             this.EditorLabel.Text = "Editor";
             // 
+            // SaveACopyButton
+            // 
+            this.SaveACopyButton.Location = new System.Drawing.Point(333, 530);
+            this.SaveACopyButton.Name = "SaveACopyButton";
+            this.SaveACopyButton.Size = new System.Drawing.Size(100, 30);
+            this.SaveACopyButton.TabIndex = 10;
+            this.SaveACopyButton.Text = "Save a Copy";
+            this.SaveACopyButton.UseVisualStyleBackColor = true;
+            this.SaveACopyButton.Click += new System.EventHandler(this.SaveACopyButton_Click);
+            // 
             // ImageEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 611);
+            this.Controls.Add(this.SaveACopyButton);
             this.Controls.Add(this.EditorLabel);
             this.Controls.Add(this.ImageFlipperLabel);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.CloseEditorButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.pictureBox1);
@@ -191,8 +205,9 @@ namespace Client
         private System.Windows.Forms.Button FlipVerticalButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button CloseEditorButton;
         private System.Windows.Forms.Label ImageFlipperLabel;
         private System.Windows.Forms.Label EditorLabel;
+        private System.Windows.Forms.Button SaveACopyButton;
     }
 }

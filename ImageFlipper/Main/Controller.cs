@@ -34,7 +34,7 @@ namespace Main
             _client = new Client.Client();
             _server = new Server.Server();
             // RUN the application by calling the clients run method:
-            Application.Run(_client.Run(SendPathToServer, RotateImageClockwise, RotateImageCounterClockwise, FlipImageHorizontal, FlipImageVertical));
+            Application.Run(_client.Run(SendPathToServer, RotateImageClockwise, RotateImageCounterClockwise, FlipImageHorizontal, FlipImageVertical, SaveImage, SaveImageCopy));
         }
 
         public void SendPathToServer(IList<String> pImagePaths)
@@ -45,10 +45,8 @@ namespace Main
             {
                 _client.AddImage(id, _server.GetImage(id, 150, 150));
             }
-            
         }
 
-        
         public void FlipImageHorizontal(string pUid)
         {
             (_server as Server.Server).HorizontalFlipImage(pUid);
@@ -69,6 +67,35 @@ namespace Main
         {
             (_server as Server.Server).RotateImageCounterClockwise(pUid);
             _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
+        }
+
+        public void SaveImage(string pUid)
+        {
+            
+            
+        }
+        /// <summary>
+        /// Allows the user to save a copy of their modified fish masterpiece!
+        /// </summary>
+        /// <param name="pUid">The uId of the image they have edited.</param>
+        public void SaveImageCopy(string pUid)
+        {
+            // CREATE a new OpenFileDialog so that the user can choose a save location:
+            SaveFileDialog save = new SaveFileDialog();
+            // RESTRICT the save output to .PNG:
+            save.Filter = "Image Files(*.png;)|*.png;";
+            save.DefaultExt = "png";
+            // SET a title for the save window:
+            save.Title = "Save your Fishy!";
+            // OPEN the File Explorer and wait for the user to choose the location:
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                // RETRIEVE the image from the server that the user has edited and save it at the location they specified:
+                (_server.GetImage(pUid, 300, 300)).Save(save.FileName);
+                // OUTPUT a confirmation to the console that the save was succesful and provide the save directory:
+                Console.WriteLine(save.FileName);
+                Console.WriteLine("Copy of Image Saved!");
+            }
         }
     }
 }

@@ -24,5 +24,7 @@ namespace Main
     public delegate void RotateImageCounterClockwiseDelegate(string uId);
     public delegate void FlipImageHorizontalDelegate(string uId);
     public delegate void FlipImageVerticalDelegate(string uId);
+    public delegate void SaveImageDelegate(string uId);
+    public delegate void SaveImageCopyDelegate(string uId);
 
 }

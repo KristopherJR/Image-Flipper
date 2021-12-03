@@ -49,11 +49,11 @@ namespace Client
         /// Run method called from the Controller when the program starts. Initialises the ImageGallery and returns the form for Application.
         /// </summary>
         /// <returns>The ImageGallery Form.</returns>
-        public Form Run(SendPathToServerDelegate pSendPathToServer, RotateImageClockwiseDelegate pRCW, RotateImageCounterClockwiseDelegate pRCCW, FlipImageHorizontalDelegate pFIH, FlipImageVerticalDelegate pFIV)
+        public Form Run(SendPathToServerDelegate pSendPathToServer, RotateImageClockwiseDelegate pRCW, RotateImageCounterClockwiseDelegate pRCCW, FlipImageHorizontalDelegate pFIH, FlipImageVerticalDelegate pFIV, SaveImageDelegate pSaveImage, SaveImageCopyDelegate pSaveImageCopy)
         {
             // INITIALISE the _imageGallery:
             _imageGallery = new ImageGallery(pSendPathToServer, PrimeEditor);
-            _imageEditor = new ImageEditor(pRCW, pRCCW, pFIH, pFIV);
+            _imageEditor = new ImageEditor(pRCW, pRCCW, pFIH, pFIV, pSaveImage, pSaveImageCopy);
             // RETURN it as a form to start the application:
             return _imageGallery as Form;
         }

@@ -25,6 +25,8 @@ namespace Client
         private RotateImageCounterClockwiseDelegate _RotateImageCounterClockwise;
         private FlipImageHorizontalDelegate _FlipImageHorizontal;
         private FlipImageVerticalDelegate _FlipImageVertical;
+        private SaveImageDelegate _saveImage;
+        private SaveImageCopyDelegate _saveImageCopy;
 
         #region PROPERTIES
         public Image EditImage
@@ -42,13 +44,21 @@ namespace Client
             }
         }
         #endregion
-        public ImageEditor(RotateImageClockwiseDelegate pRCW, RotateImageCounterClockwiseDelegate pRCCW, FlipImageHorizontalDelegate pFIH, FlipImageVerticalDelegate pFIV)
+        public ImageEditor(RotateImageClockwiseDelegate pRCW,
+                           RotateImageCounterClockwiseDelegate pRCCW,
+                           FlipImageHorizontalDelegate pFIH,
+                           FlipImageVerticalDelegate pFIV,
+                           SaveImageDelegate pSaveImage,
+                           SaveImageCopyDelegate pSaveImageCopy)
         {
             // SUBSCRIBE to the delegates:
             _RotateImageClockwise = pRCW;
             _RotateImageCounterClockwise = pRCCW;
             _FlipImageHorizontal = pFIH;
             _FlipImageVertical = pFIV;
+            _saveImage = pSaveImage;
+            _saveImageCopy = pSaveImageCopy;
+            ControlBox = false;
             InitializeComponent();
             
         }
@@ -76,5 +86,21 @@ namespace Client
         {
             _FlipImageVertical(_editImageUid);
         }
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            _saveImage(_editImageUid);
+        }
+
+        private void SaveACopyButton_Click(object sender, EventArgs e)
+        {
+            _saveImageCopy(_editImageUid);
+        }
+
+        private void CloseEditorButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        
     }
 }
