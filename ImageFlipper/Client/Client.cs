@@ -20,16 +20,30 @@ namespace Client
         private IImageGallery _imageGallery;
         // DECLARE an IImageEditor, call it _imageEditor:
         private IImageEditor _imageEditor;
+        // DECLARE an IList<String>, all it _imageIds:
+        private IList<String> _imageIds;
         #endregion
         #region PROPERTIES
         public IImageGallery ImageGallery
         {
             get { return _imageGallery; }
         }
+
+        public IImageEditor ImageEditor
+        {
+            get { return _imageEditor; }
+        }
+
+        public IList<String> ImageIds
+        {
+            get { return _imageIds; }
+            set { _imageIds = value; }
+        }
+
         #endregion
         public Client()
         {
-            
+            _imageIds = new List<String>();
         }
         /// <summary>
         /// Run method called from the Controller when the program starts. Initialises the ImageGallery and returns the form for Application.
@@ -51,11 +65,13 @@ namespace Client
         public void AddImage(string pPictureBoxID, Image pImage)
         {
             _imageGallery.AddImage(pPictureBoxID, pImage);
+            _imageIds.Add(pPictureBoxID);
         }
 
-        public void PrimeEditor(Image pSelectedImage)
+        public void PrimeEditor(Image pSelectedImage, String pSelectedImageUid)
         {
             _imageEditor.EditImage = pSelectedImage;
+            _imageEditor.EditImageUid = pSelectedImageUid;
             (_imageEditor as Form).Show();
         }
     }

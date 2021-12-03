@@ -18,7 +18,7 @@ namespace Main
     /// <summary>
     /// Triggered from ImageGallery when the user wishes to open the editor. Received by the client.
     /// </summary>
-    public delegate void PrimeEditorDelegate(Image pSelectedImage);
+    public delegate void PrimeEditorDelegate(Image pSelectedImage, String pSelectedImageUid);
 
     public delegate void RotateImageClockwiseDelegate(string uId);
     public delegate void RotateImageCounterClockwiseDelegate(string uId);

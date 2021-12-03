@@ -48,9 +48,11 @@ namespace Main
             
         }
 
-        public void RotateImageClockwise(string uId)
+        public void RotateImageClockwise(string pUid)
         {
-
+            Console.WriteLine("delegate fired!!!");
+            _server.RotateImage(pUid);
+            _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
         }
         public void RotateImageCounterClockwise(string uId)
         {

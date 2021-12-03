@@ -20,6 +20,7 @@ namespace Client
     public partial class ImageEditor : Form, IImageEditor
     {
         private Image _editImage;
+        private String _editImageUid;
         private RotateImageClockwiseDelegate _RCW;
         private RotateImageCounterClockwiseDelegate _RCCW;
         private FlipImageHorizontalDelegate _FIH;
@@ -31,6 +32,14 @@ namespace Client
             get { return _editImage; }
             set { _editImage = value;
                 pictureBox1.Image = _editImage; }
+        }
+        public String EditImageUid
+        {
+            get { return _editImageUid; }
+            set
+            {
+                _editImageUid = value;
+            }
         }
         #endregion
         public ImageEditor(RotateImageClockwiseDelegate pRCW, RotateImageCounterClockwiseDelegate pRCCW, FlipImageHorizontalDelegate pFIH, FlipImageVerticalDelegate pFIV)
@@ -50,8 +59,7 @@ namespace Client
 
         private void RotateClockwiseButton_Click(object sender, EventArgs e)
         {
-            _editImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            pictureBox1.Image = _editImage;
+            _RCW(_editImageUid);
         }
 
         private void RotateCounterClockwiseButton_Click(object sender, EventArgs e)

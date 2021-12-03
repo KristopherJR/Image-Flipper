@@ -74,8 +74,9 @@ namespace Server
         /// <returns>void</returns>
         public void RotateImage(string pUid)
         {
-            // ROTATE the image clockowise via the image handler and save the change in the servers storage:
+            // ROTATE the image clockwise via the image handler and save the change in the servers storage:
             _imageStorage.Images[pUid] = _imageHandler.RotateClockwise(_imageStorage.Images[pUid]);
+            Console.WriteLine("We're into server bois!");
         }
         /// <summary>
         /// Rotate the image counter clockwise specified by 'pUid'.

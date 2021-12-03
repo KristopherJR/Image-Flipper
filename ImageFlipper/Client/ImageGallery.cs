@@ -26,6 +26,7 @@ namespace Client
         private Dictionary<string, PictureBox> _pictureBoxes;
         private PictureBox _selectedPictureBox;
         private PictureBox _previouslySelectedPictureBox;
+        private String _selectedImageUid;
         // DECLARE a SendPathToServerDelegate, call it _sendPathToServer:
         private SendPathToServerDelegate _sendPathToServer;
         private PrimeEditorDelegate _primeEditor;
@@ -165,8 +166,15 @@ namespace Client
             }
             else
             {
+                foreach(KeyValuePair<String, PictureBox> p in _pictureBoxes)
+                {
+                    if(p.Value.Image == _selectedPictureBox.Image)
+                    {
+                        _selectedImageUid = p.Key;
+                    }
+                }
                 // SIGNAL for the client to prime the editor:
-                _primeEditor(_selectedPictureBox.Image);  
+                _primeEditor(_selectedPictureBox.Image, _selectedImageUid);  
             }
         }
     }

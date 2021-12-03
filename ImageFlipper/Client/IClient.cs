@@ -19,6 +19,11 @@ namespace Client
         {
             get;
         }
+
+        IImageEditor ImageEditor
+        {
+            get;
+        }
         /// <summary>
         /// Run method called from the Controller when the program starts. Initialises the ImageGallery and returns the form for Application.
         /// </summary>

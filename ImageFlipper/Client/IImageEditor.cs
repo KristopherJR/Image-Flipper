@@ -14,5 +14,6 @@ namespace Client
     public interface IImageEditor
     {
         Image EditImage { get; set; }
+        String EditImageUid { get; set; }
     }
 }
