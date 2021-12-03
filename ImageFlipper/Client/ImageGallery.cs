@@ -166,7 +166,7 @@ namespace Client
             else
             {
                 // SIGNAL for the client to prime the editor:
-                _primeEditor();  
+                _primeEditor(_selectedPictureBox.Image);  
             }
         }
     }

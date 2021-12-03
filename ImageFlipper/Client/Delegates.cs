@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,11 @@ namespace Main
     /// <summary>
     /// Triggered from ImageGallery when the user wishes to open the editor. Received by the client.
     /// </summary>
-    public delegate void PrimeEditorDelegate();
-    
+    public delegate void PrimeEditorDelegate(Image pSelectedImage);
+
+    public delegate void RotateImageClockwiseDelegate(string uId);
+    public delegate void RotateImageCounterClockwiseDelegate(string uId);
+    public delegate void FlipImageHorizontalDelegate(string uId);
+    public delegate void FlipImageVerticalDelegate(string uId);
+
 }

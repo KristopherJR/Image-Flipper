@@ -34,7 +34,7 @@ namespace Main
             _client = new Client.Client();
             _server = new Server.Server();
             // RUN the application by calling the clients run method:
-            Application.Run(_client.Run(SendPathToServer));
+            Application.Run(_client.Run(SendPathToServer, RotateImageClockwise, RotateImageCounterClockwise, FlipImageHorizontal, RotateImageVertical));
         }
 
         public void SendPathToServer(IList<String> pImagePaths)
@@ -46,6 +46,23 @@ namespace Main
                 _client.AddImage(id, _server.GetImage(id, 150, 150));
             }
             
+        }
+
+        public void RotateImageClockwise(string uId)
+        {
+
+        }
+        public void RotateImageCounterClockwise(string uId)
+        {
+
+        }
+        public void FlipImageHorizontal(string uId)
+        {
+
+        }
+        public void RotateImageVertical(string uId)
+        {
+
         }
     }
 }

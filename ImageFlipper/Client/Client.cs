@@ -20,7 +20,6 @@ namespace Client
         private IImageGallery _imageGallery;
         // DECLARE an IImageEditor, call it _imageEditor:
         private IImageEditor _imageEditor;
-        
         #endregion
         #region PROPERTIES
         public IImageGallery ImageGallery
@@ -36,10 +35,11 @@ namespace Client
         /// Run method called from the Controller when the program starts. Initialises the ImageGallery and returns the form for Application.
         /// </summary>
         /// <returns>The ImageGallery Form.</returns>
-        public Form Run(SendPathToServerDelegate pSendPathToServer)
+        public Form Run(SendPathToServerDelegate pSendPathToServer, RotateImageClockwiseDelegate pRCW, RotateImageCounterClockwiseDelegate pRCCW, FlipImageHorizontalDelegate pFIH, FlipImageVerticalDelegate pFIV)
         {
             // INITIALISE the _imageGallery:
             _imageGallery = new ImageGallery(pSendPathToServer, PrimeEditor);
+            _imageEditor = new ImageEditor(pRCW, pRCCW, pFIH, pFIV);
             // RETURN it as a form to start the application:
             return _imageGallery as Form;
         }
@@ -53,9 +53,9 @@ namespace Client
             _imageGallery.AddImage(pPictureBoxID, pImage);
         }
 
-        public void PrimeEditor()
+        public void PrimeEditor(Image pSelectedImage)
         {
-            _imageEditor = new ImageEditor(_imageGallery.SelectedPictureBox.Image);
+            _imageEditor.EditImage = pSelectedImage;
             (_imageEditor as Form).Show();
         }
     }

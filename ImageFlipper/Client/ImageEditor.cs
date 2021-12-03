@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Main;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,15 +20,32 @@ namespace Client
     public partial class ImageEditor : Form, IImageEditor
     {
         private Image _editImage;
-        public ImageEditor(Image pEditImage)
+        private RotateImageClockwiseDelegate _RCW;
+        private RotateImageCounterClockwiseDelegate _RCCW;
+        private FlipImageHorizontalDelegate _FIH;
+        private FlipImageVerticalDelegate _FIV;
+
+        #region PROPERTIES
+        public Image EditImage
         {
+            get { return _editImage; }
+            set { _editImage = value;
+                pictureBox1.Image = _editImage; }
+        }
+        #endregion
+        public ImageEditor(RotateImageClockwiseDelegate pRCW, RotateImageCounterClockwiseDelegate pRCCW, FlipImageHorizontalDelegate pFIH, FlipImageVerticalDelegate pFIV)
+        {
+            // SUBSCRIBE to the delegates:
+            _RCW = pRCW;
+            _RCCW = pRCCW;
+            _FIH = pFIH;
+            _FIV = pFIV;
             InitializeComponent();
-            _editImage = pEditImage;
+            
         }
         private void ImageEditor_Load(object sender, EventArgs e)
         {
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.Image = _editImage;
         }
 
         private void RotateClockwiseButton_Click(object sender, EventArgs e)

@@ -23,7 +23,7 @@ namespace Client
         /// Run method called from the Controller when the program starts. Initialises the ImageGallery and returns the form for Application.
         /// </summary>
         /// <returns>The ImageGallery Form.</returns>
-        Form Run(SendPathToServerDelegate pSendPathToServer);
+        Form Run(SendPathToServerDelegate pSendPathToServer, RotateImageClockwiseDelegate pRCW, RotateImageCounterClockwiseDelegate pRCCW, FlipImageHorizontalDelegate pFIH, FlipImageVerticalDelegate pFIV);
         /// <summary>
         /// Adds an image to the GUI Image Gallery, this should be provided by the server.
         /// </summary>
