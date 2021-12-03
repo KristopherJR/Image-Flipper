@@ -35,8 +35,7 @@ namespace Client
 
         private void ImageGallery_Load(object sender, EventArgs e)
         {
-            // INITIALISE the collection classes:
-            _imageFilePaths = new List<String>();
+            // INITIALISE the dictionary:   
             _pictureBoxes = new Dictionary<string, PictureBox>();
 
         }
@@ -124,8 +123,6 @@ namespace Client
                 _imageFilePath.Add(open.FileName);
                 // SEND the image path to the server by calling the delegate method in controller:
                 _sendPathToServer(_imageFilePath);;
-                // display the image in the picture box:
-                //newPicture.Image = new Bitmap(open.FileName);
                 // image file path
                 textBox1.Text = Path.GetFileName(open.FileName);
             }
@@ -142,13 +139,10 @@ namespace Client
             {
                 if(pb.Key == pPictureBoxID)
                 {
-
                     pb.Value.Image = pImage;
                 }
             }
         }
-
-
 
         private void EditImageButton_Click(object sender, EventArgs e)
         {
