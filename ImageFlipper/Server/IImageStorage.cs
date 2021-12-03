@@ -21,15 +21,21 @@ namespace Server
             get;
         }
         /// <summary>
-        /// Adds an image to the collection.
+        /// Adds images to the collection from the file paths.
         /// </summary>
-        /// <param name="pUid">The unique identifier for the image in the dictionary. This should be the filepath.</param>
-        /// <param name="pImage">The image to be added to the images dictionary.</param>
-        void Add(String pUid, Image pImage);
+        /// <param name="pImagePaths"></param>
+        void Add(IList<String> pImagePaths);
         /// <summary>
         /// Remove an image from the collection.
         /// </summary>
         /// <param name="pUid">The Uid key of the image to be removed from the dictionary.</param>
         void Remove(String pUid);
+        /// <summary>
+        /// Retrieves an image from the ImageStorage.
+        /// </summary>
+        /// <param name="pUid">The unique identifier of the Image to be retrieved from the dictionary. This will usually be the filepath.</param>
+        /// <returns></returns>
+        Image RetrieveImage(String pUid);
+
     }
 }

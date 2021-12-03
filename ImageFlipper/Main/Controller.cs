@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Main
 {
     /// <summary>
@@ -33,7 +34,18 @@ namespace Main
             _client = new Client.Client();
             _server = new Server.Server();
             // RUN the application by calling the clients run method:
-            Application.Run(_client.Run());
+            Application.Run(_client.Run(SendPathToServer));
+        }
+
+        public void SendPathToServer(IList<String> pImagePaths)
+        {
+            _server.Load(pImagePaths);
+            // TRIGGER a callback and provided the client with the loaded image from the serveR:
+            foreach(String id in pImagePaths)
+            {
+                _client.AddImage(id, _server.GetImage(id, 150, 150));
+            }
+            
         }
     }
 }

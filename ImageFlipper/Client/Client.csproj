@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="Delegates.cs" />
     <Compile Include="IClient.cs" />
     <Compile Include="IImageEditor.cs" />
     <Compile Include="IImageGallery.cs" />

@@ -34,12 +34,28 @@ namespace Server
 
         public IList<string> Load(IList<string> pPathfilenames)
         {
-            throw new NotImplementedException();
+            // ADD the image to the storage
+            _imageStorage.Add(pPathfilenames);
+            // RETRIEVE the image storage dictionary:
+            Dictionary<String, Image> _images = _imageStorage.Images;
+            // DECLARE a new list for the image identifer keys:
+            IList<string> _imageIdentifiers = new List<string>();
+            // ITERATE through the dictionary and grab the keys, add them to the list:
+            foreach (KeyValuePair<String, Image> image in _images)
+            {
+                _imageIdentifiers.Add(image.Key);
+            }
+            // RETURN the IList of keys:
+            return _imageIdentifiers;
         }
 
         public Image GetImage(string pUid, int pFrameWidth, int pFrameHeight)
         {
-            throw new NotImplementedException();
+            Image retrievedImage = _imageStorage.RetrieveImage(pUid);
+            Image scaledImage = (Image)(new Bitmap(retrievedImage, new Size(pFrameWidth,pFrameHeight)));
+
+
+            return scaledImage;
         }
 
         public void HorizontalFlipImage(string pUid)

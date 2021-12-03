@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Main;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,12 +22,14 @@ namespace Client
     /// </summary>
     public partial class ImageGallery : Form, IImageGallery
     {
-        private List<String> _imageFilePaths;
         private Dictionary<string, PictureBox> _pictureBoxes;
         private PictureBox _selectedPictureBox;
         private PictureBox _previouslySelectedPictureBox;
-        public ImageGallery()
+        // DECLARE a SendPathToServerDelegate, call it _sendPathToServer:
+        private SendPathToServerDelegate _sendPathToServer;
+        public ImageGallery(SendPathToServerDelegate pSendPathToServer)
         {
+            _sendPathToServer = pSendPathToServer;
             InitializeComponent();    
         }
 
@@ -97,64 +100,55 @@ namespace Client
         /// <param name="e"></param>
         private void LoadImageButton_Click(object sender, EventArgs e)
         {
-            // CHECK that the user hasn't already loaded 10 images:
-            if(_imageFilePaths.Count < 10)
-            {
-                // CREATE a new OpenFileDialog so that the user can load an image from the File Explorer:
-                OpenFileDialog open = new OpenFileDialog();
+            // CREATE a new OpenFileDialog so that the user can load an image from the File Explorer:
+            OpenFileDialog open = new OpenFileDialog();
 
-                // DEFINE images filters to restrict the user to only .PNG file formats:
-                open.Filter = "Image Files(*.png;)|*.png;";
-                // OPEN the File Explorer and wait for the user to select an image file:
-                if (open.ShowDialog() == DialogResult.OK)
+            // DEFINE images filters to restrict the user to only .PNG file formats:
+            open.Filter = "Image Files(*.png;)|*.png;";
+            // OPEN the File Explorer and wait for the user to select an image file:
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                // CREATE a new PictureBox, call it newPicture:
+                PictureBox newPicture = new PictureBox();
+                // CREATE a mouse click handler for the newPicture:
+                newPicture.MouseClick += new MouseEventHandler(newPicture_Click);
+                // ADD newPicture to the _pictureBoxes dict. Use the same FileName as the key:
+                _pictureBoxes.Add(open.FileName, newPicture);
+                // SET its Size and SizeMode:
+                newPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+                newPicture.Size = new Size(150, 150);
+
+                // ADD newPicture to the flowLayoutPanel:
+                flowLayoutPanel1.Controls.Add(newPicture);
+                IList<String> _imageFilePath = new List<String>();
+                _imageFilePath.Add(open.FileName);
+                // SEND the image path to the server by calling the delegate method in controller:
+                _sendPathToServer(_imageFilePath);;
+                // display the image in the picture box:
+                //newPicture.Image = new Bitmap(open.FileName);
+                // image file path
+                textBox1.Text = Path.GetFileName(open.FileName);
+            }
+        }
+
+        /// <summary>
+        /// Adds an image to the GUI Image Gallery, this should be provided by the server.
+        /// </summary>
+        /// <param name="pPictureBoxID">The ID of the pictureBox for the image to be added to.</param>
+        /// <param name="pImage">The image to be added to the GUI Image Gallery.</param>
+        public void AddImage(string pPictureBoxID, Image pImage)
+        {
+            foreach(KeyValuePair<string, PictureBox> pb in _pictureBoxes)
+            {
+                if(pb.Key == pPictureBoxID)
                 {
 
-                    // CHECK that the image selected has NOT already been loaded:
-                    if (!_imageFilePaths.Contains(open.FileName))
-                    {
-                        // ADD the image file path to the List:
-                        _imageFilePaths.Add(open.FileName);
-                        // CREATE a new PictureBox, call it newPicture:
-                        PictureBox newPicture = new PictureBox();
-                        // CREATE a mouse click handler for the newPicture:
-                        newPicture.MouseClick += new MouseEventHandler(newPicture_Click);
-                        // ADD newPicture to the _pictureBoxes dict. Use the same FileName as the key:
-                        _pictureBoxes.Add(open.FileName, newPicture);
-                        // SET its Size and SizeMode:
-                        newPicture.SizeMode = PictureBoxSizeMode.StretchImage;
-                        newPicture.Size = new Size(150, 150);
-
-                        // ADD newPicture to the flowLayoutPanel:
-                        flowLayoutPanel1.Controls.Add(newPicture);
-
-                        // display the image in the picture box:
-                        newPicture.Image = new Bitmap(open.FileName);
-                        // image file path  
-                        textBox1.Text = Path.GetFileName(open.FileName);
-                    }
-                    else
-                    {
-                        // IF the user tries to load a previously loaded image, print an error message:
-                        Console.WriteLine("Sorry! You've already loaded that image.");
-                    }
-
-
+                    pb.Value.Image = pImage;
                 }
-
             }
-            else
-            {
-                Console.WriteLine("Sorry fam, only 10 images allowed at a time.");
-            }
-            
         }
 
-        private void SendPathToServer(String pImagePath)
-        {
 
-        }
-
-        
 
         private void EditImageButton_Click(object sender, EventArgs e)
         {

@@ -13,6 +13,6 @@ namespace Main
     /// <summary>
     /// Delegate to send an image path to the server.
     /// </summary>
-    public delegate void SendPathToServerDelegate();
+    public delegate void SendPathToServerDelegate(IList<String> pImagePath);
     
 }
