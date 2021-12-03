@@ -39,7 +39,7 @@ namespace Client
         public Form Run(SendPathToServerDelegate pSendPathToServer)
         {
             // INITIALISE the _imageGallery:
-            _imageGallery = new ImageGallery(pSendPathToServer);
+            _imageGallery = new ImageGallery(pSendPathToServer, PrimeEditor);
             // RETURN it as a form to start the application:
             return _imageGallery as Form;
         }
@@ -51,6 +51,12 @@ namespace Client
         public void AddImage(string pPictureBoxID, Image pImage)
         {
             _imageGallery.AddImage(pPictureBoxID, pImage);
+        }
+
+        public void PrimeEditor()
+        {
+            _imageEditor = new ImageEditor(_imageGallery.SelectedPictureBox.Image);
+            (_imageEditor as Form).Show();
         }
     }
 }

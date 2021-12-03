@@ -22,14 +22,25 @@ namespace Client
     /// </summary>
     public partial class ImageGallery : Form, IImageGallery
     {
+        #region FIELDS
         private Dictionary<string, PictureBox> _pictureBoxes;
         private PictureBox _selectedPictureBox;
         private PictureBox _previouslySelectedPictureBox;
         // DECLARE a SendPathToServerDelegate, call it _sendPathToServer:
         private SendPathToServerDelegate _sendPathToServer;
-        public ImageGallery(SendPathToServerDelegate pSendPathToServer)
+        private PrimeEditorDelegate _primeEditor;
+        #endregion
+
+        #region PROPERTIES
+        public PictureBox SelectedPictureBox
+        {
+            get { return _selectedPictureBox; }
+        }
+        #endregion
+        public ImageGallery(SendPathToServerDelegate pSendPathToServer, PrimeEditorDelegate pPrimeEditor)
         {
             _sendPathToServer = pSendPathToServer;
+            _primeEditor = pPrimeEditor;
             InitializeComponent();    
         }
 
@@ -122,7 +133,7 @@ namespace Client
                 IList<String> _imageFilePath = new List<String>();
                 _imageFilePath.Add(open.FileName);
                 // SEND the image path to the server by calling the delegate method in controller:
-                _sendPathToServer(_imageFilePath);;
+                _sendPathToServer(_imageFilePath);
                 // image file path
                 textBox1.Text = Path.GetFileName(open.FileName);
             }
@@ -146,14 +157,16 @@ namespace Client
 
         private void EditImageButton_Click(object sender, EventArgs e)
         {
+            // IF the user hasn't selected an image:
             if(_selectedPictureBox == null)
             {
+                // OUTPUT an error instructing the user to select an image first:
                 Console.WriteLine("Click an image first that you wish to edit.");
             }
             else
             {
-                ImageEditor newEditor = new ImageEditor(_selectedPictureBox.Image);
-                newEditor.Show();
+                // SIGNAL for the client to prime the editor:
+                _primeEditor();  
             }
         }
     }
