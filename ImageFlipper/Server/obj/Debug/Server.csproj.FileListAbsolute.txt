@@ -12,3 +12,10 @@ C:\Users\rank1_18\Desktop\IFlipper\ImageFlipper\Server\obj\Debug\Server.csproj.C
 C:\Users\rank1_18\Desktop\IFlipper\ImageFlipper\Server\obj\Debug\Server.dll
 C:\Users\rank1_18\Desktop\IFlipper\ImageFlipper\Server\obj\Debug\Server.pdb
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+C:\Users\krist\Desktop\New folder\Image-Flipper\ImageFlipper\Server\bin\Debug\Server.dll.config
+C:\Users\krist\Desktop\New folder\Image-Flipper\ImageFlipper\Server\bin\Debug\Server.dll
+C:\Users\krist\Desktop\New folder\Image-Flipper\ImageFlipper\Server\bin\Debug\Server.pdb
+C:\Users\krist\Desktop\New folder\Image-Flipper\ImageFlipper\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+C:\Users\krist\Desktop\New folder\Image-Flipper\ImageFlipper\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\krist\Desktop\New folder\Image-Flipper\ImageFlipper\Server\obj\Debug\Server.dll
+C:\Users\krist\Desktop\New folder\Image-Flipper\ImageFlipper\Server\obj\Debug\Server.pdb

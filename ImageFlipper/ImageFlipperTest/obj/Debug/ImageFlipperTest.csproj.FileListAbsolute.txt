@@ -18,3 +18,6 @@ C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\obj\Debug\Ima
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Server.dll
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Server.pdb
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Server.dll.config
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Main.exe
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Main.pdb
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Main.exe.config

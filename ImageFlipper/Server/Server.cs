@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server.UserExceptions;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -12,15 +13,25 @@ namespace Server
     /// 
     /// Author: Kristopher Randle
     /// IServer Author: Dr Marc Price
-    /// Version 0.1, 02-12-21
+    /// Version 0.3, 04-12-21
     /// </summary>
     public class Server : IServer
     {
         #region FIELDS
         // DECLARE an IImageStorage, call it _imageStorage:
-        IImageStorage _imageStorage;
+        private IImageStorage _imageStorage;
         // DECLARE an IImageHandler, call it _imageHandler:
-        IImageHandler _imageHandler;
+        private IImageHandler _imageHandler;
+        #endregion
+        #region PROPERTIES
+        public IImageStorage ImageStorage
+        {
+            get { return _imageStorage; }
+        }
+        public IImageHandler ImageHandler
+        {
+            get { return _imageHandler; }
+        }
         #endregion
         /// <summary>
         /// Constructor for Server.
@@ -62,9 +73,31 @@ namespace Server
         /// <returns>the Image identified by pUid</returns>
         public Image GetImage(string pUid, int pFrameWidth, int pFrameHeight)
         {
-            Image retrievedImage = _imageStorage.RetrieveImage(pUid);
-            Image scaledImage = (Image)(new Bitmap(retrievedImage, new Size(pFrameWidth,pFrameHeight)));
-            return scaledImage;
+            // CHECK that the servers storage contains an image with the provided uId:
+            if(_imageStorage.Images.ContainsKey(pUid))
+            {
+                //CHECK that the width and height provided are greater than 0:
+                if(pFrameWidth > 0 && pFrameHeight > 0)
+                {
+                    // DECLARE an Image, call it retrievedImage. Retrieve the image from the Servers image storage with the uId:
+                    Image retrievedImage = _imageStorage.RetrieveImage(pUid);
+                    // DECLARE an Image, call it scaledImage. Set it to a scale version of retrievedImage based on the width and height provided:
+                    Image scaledImage = (Image)(new Bitmap(retrievedImage, new Size(pFrameWidth, pFrameHeight)));
+                    // RETURN the scaled image:
+                    return scaledImage;
+                }
+                else
+                {
+                    // THROW a new InvalidParameterException if the width and height are not greater than 0:
+                    throw new InvalidParameterException("SERVER: The width and height provided are not greater than 0.");
+                }
+                
+            }
+            else
+            {
+                // THROW an ElementNotFoundException if the server storage doesn't contain an image with the uId:
+                throw new ElementNotFoundException("SERVER: An image with the specified uId (" + pUid + ") could not be found in the Servers image storage.");
+            }
         }
         /// <summary>
         /// Rotate the image specified by 'pUid'.
@@ -74,9 +107,15 @@ namespace Server
         /// <returns>void</returns>
         public void RotateImage(string pUid)
         {
-            // ROTATE the image clockwise via the image handler and save the change in the servers storage:
-            _imageStorage.Images[pUid] = _imageHandler.RotateClockwise(_imageStorage.Images[pUid]);
-            Console.WriteLine("We're into server bois!");
+            if(_imageStorage.Images.ContainsKey(pUid))
+            {
+                // ROTATE the image clockwise via the image handler and save the change in the servers storage:
+                _imageStorage.Images[pUid] = _imageHandler.RotateClockwise(_imageStorage.Images[pUid]);
+            }
+            else
+            {
+                throw new ElementNotFoundException("SERVER: An image with the specified uId (" + pUid + ") could not be found in the Servers image storage.");
+            }
         }
         /// <summary>
         /// Rotate the image counter clockwise specified by 'pUid'.
@@ -86,8 +125,15 @@ namespace Server
         /// <returns>void</returns>
         public void RotateImageCounterClockwise(string pUid)
         {
-            // ROTATE the image counter clockwise via the image handler and save the change in the servers storage:
-            _imageStorage.Images[pUid] = _imageHandler.RotateCounterClockwise(_imageStorage.Images[pUid]);
+            if (_imageStorage.Images.ContainsKey(pUid))
+            {
+                // ROTATE the image counter clockwise via the image handler and save the change in the servers storage:
+                _imageStorage.Images[pUid] = _imageHandler.RotateCounterClockwise(_imageStorage.Images[pUid]);
+            }
+            else
+            {
+                throw new ElementNotFoundException("SERVER: An image with the specified uId (" + pUid + ") could not be found in the Servers image storage.");
+            }
         }
         /// <summary>
         /// Flip the image specified by 'pUid' horizontally.
@@ -96,8 +142,15 @@ namespace Server
         /// <returns>void</returns>
         public void HorizontalFlipImage(string pUid)
         {
-            // FLIP the image horizontally via the image handler and save the change in the servers storage:
-            _imageStorage.Images[pUid] = _imageHandler.FlipImageHorizontal(_imageStorage.Images[pUid]);
+            if (_imageStorage.Images.ContainsKey(pUid))
+            {
+                // FLIP the image horizontally via the image handler and save the change in the servers storage:
+                _imageStorage.Images[pUid] = _imageHandler.FlipImageHorizontal(_imageStorage.Images[pUid]);
+            }
+            else
+            {
+                throw new ElementNotFoundException("SERVER: An image with the specified uId (" + pUid + ") could not be found in the Servers image storage.");
+            }
         }
         /// <summary>
         /// Flip the image specified by 'pUid' vertically.
@@ -106,8 +159,15 @@ namespace Server
         /// <returns>void</returns>
         public void VerticalFlipImage(string pUid)
         {
-            // FLIP the image vertically via the image handler and save the change in the servers storage:
-            _imageStorage.Images[pUid] = _imageHandler.FlipImageVertical(_imageStorage.Images[pUid]);
+            if (_imageStorage.Images.ContainsKey(pUid))
+            {
+                // FLIP the image vertically via the image handler and save the change in the servers storage:
+                _imageStorage.Images[pUid] = _imageHandler.FlipImageVertical(_imageStorage.Images[pUid]);
+            }
+            else
+            {
+                throw new ElementNotFoundException("SERVER: An image with the specified uId (" + pUid + ") could not be found in the Servers image storage.");
+            }
         }
     }
 }

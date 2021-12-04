@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ImageStorageTest.cs" />
+    <Compile Include="ServerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -60,6 +61,10 @@
     <ProjectReference Include="..\Client\Client.csproj">
       <Project>{3DDB5027-9909-485B-98E8-338137FA0DBE}</Project>
       <Name>Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Main\Main.csproj">
+      <Project>{d3dee437-7ce1-4d7b-8553-17141be1b744}</Project>
+      <Name>Main</Name>
     </ProjectReference>
     <ProjectReference Include="..\Server\Server.csproj">
       <Project>{F31B6FB1-94FF-4E64-AF02-EAAB14FCE678}</Project>
