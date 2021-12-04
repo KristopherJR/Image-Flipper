@@ -107,6 +107,8 @@ namespace Server
             {
                 // GRAB the image from the dictionary:
                 Image retrievedImage = _images[pUid];
+                // PRINT a confirmation that the image was retrieved to the console:
+                Console.WriteLine("SERVER: Image (" + pUid + ") was retrieved from the collection and sent back to the caller.");
                 // RETURN it:
                 return retrievedImage;
             }

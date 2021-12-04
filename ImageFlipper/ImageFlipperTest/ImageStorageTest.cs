@@ -320,21 +320,46 @@ namespace ImageFlipperTest
         }
         /// <summary>
         /// Test ImageStorage RetrieveImage() method in normal conditions:
-        /// - uId = "Test".
-        /// - expected response is an ElementNotFoundException with the message:
+        /// - uId = "TEST".
+        /// - expected response "SERVER: Image (" + pUid + ") was retrieved from the collection and sent back to the caller."
         ///   "SERVER: Image retrieved from collection. uId: Test."
+        /// - PASS condition: Exception is thrown when the user tries to load an image they have already loaded.
+        /// - FAIL condition: Exception is not thrown when the user tries to load an image they have already loaded.
         /// </summary>
         [TestMethod]
         public void RetrieveImageTestNormal()
         {
             #region ARRANGE
-            
+            // INSTANTIATE ImageStorage:
+            ImageStorage imageStorage = new ImageStorage();
+            // INSTANTIATE an IList, call it imagePaths:
+            IList<String> imagePaths = new List<String>();
+            // POPULATE imagePaths with an image:
+            imagePaths.Add(@"FishAssets\JavaFish.png");
             #endregion ARRANGE
 
             #region ACT
+            // LOAD the image into storage:
+            imageStorage.Add(imagePaths);
+            // TRY to retrieve the image from the storage in a try-catch:
+            try
+            {
+                Image Test = imageStorage.RetrieveImage(@"FishAssets\JavaFish.png");
+            }
             #endregion ACT
 
             #region ASSERT
+            catch(ElementNotFoundException e)
+            {
+                // PRINT the exception message:
+                Console.WriteLine(e.Message);
+                // FAIL test if an exception is thrown when the user tries to retrieve an image that is in the list:
+                Assert.IsFalse(true);
+                // RETURN so that the test doesn't reach the pass statement:
+                return;
+            }
+            // PASS the test if the program does not throw an exception when the user tries to retrieve an image that is in the list:
+            Assert.IsTrue(true, "The program did not throw an exception when the user tried to retrieve an image that is in the list.");
             #endregion ASSERT
         }
         /// <summary>
