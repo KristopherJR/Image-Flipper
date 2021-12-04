@@ -103,10 +103,18 @@ namespace Server
         /// <returns>The image in the dictionary with the specified key.</returns>
         public Image RetrieveImage(String pUid)
         {
-            // GRAB the image from the dictionary:
-            Image retrievedImage = _images[pUid];
-            // RETURN it:
-            return retrievedImage;
+            if(_images.ContainsKey(pUid))
+            {
+                // GRAB the image from the dictionary:
+                Image retrievedImage = _images[pUid];
+                // RETURN it:
+                return retrievedImage;
+            }
+            else
+            {
+                throw new ElementNotFoundException("SERVER: Image could not be retrieved as the uId (" + pUid + ") could not be found in the list.");
+            }
+            
         }
     }
 }

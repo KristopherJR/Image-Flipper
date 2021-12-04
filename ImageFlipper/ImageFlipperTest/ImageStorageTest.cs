@@ -4,6 +4,7 @@ using Server.UserExceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Drawing;
 
 /// <summary>
 /// Author: Kristopher Randle & Marc Price
@@ -318,6 +319,64 @@ namespace ImageFlipperTest
             #endregion ASSERT
         }
         /// <summary>
+        /// Test ImageStorage RetrieveImage() method in normal conditions:
+        /// - uId = "Test".
+        /// - expected response is an ElementNotFoundException with the message:
+        ///   "SERVER: Image retrieved from collection. uId: Test."
+        /// </summary>
+        [TestMethod]
+        public void RetrieveImageTestNormal()
+        {
+            #region ARRANGE
+            
+            #endregion ARRANGE
+
+            #region ACT
+            #endregion ACT
+
+            #region ASSERT
+            #endregion ASSERT
+        }
+        /// <summary>
+        /// Test ImageStorage RetrieveImage() method when the uId is not in the list:
+        /// - uId = "NOT_IN_LIST".
+        /// - expected response is an ElementNotfoundException with the message:
+        ///   "SERVER: Image could not be retrieved as the uId (" + uId + ") could not be found in the list."
+        /// </summary>
+        [TestMethod]
+        public void RetrieveImageTestElementNotFound()
+        {
+            #region ARRANGE
+            // INSTANTIATE ImageStorage:
+            ImageStorage imageStorage = new ImageStorage();
+            // DECLARE a string, call it uId and set it to "Test":
+            string uId = "NOT_IN_LIST";
+            #endregion ARRANGE
+
+            #region ACT
+            // CALL the RetrieveImage() method and pass in the uId in a try-catch, assign it to a dummy-image:
+            try
+            {
+                Image test = imageStorage.RetrieveImage(uId);
+            }
+            #endregion ACT
+
+            #region ASSERT
+            // CATCH the exception and print the error message:
+            catch (ElementNotFoundException e)
+            {
+                // PRINT the exception message:
+                Console.WriteLine(e.Message);
+                // PASS test if an exception is thrown when the user tries to retrieve an image that is not in the list:
+                Assert.IsTrue(true);
+                // RETURN so that the test doesn't reach the fail statement:
+                return;
+            }
+            // FAIL the test if the program does not throw an exception when the user tries to retrieve an image that is not in the list:
+            Assert.IsFalse(true, "The program did not throw an exception when the user tried to retrieve an image that is not in the list.");
+            #endregion ASSERT
+        }
+        /// <summary>
         /// Test ImageStorage Remove() method in normal conditions:
         /// - uId = "Test".
         /// - expected response is "SERVER: Image Succesfully Removed from Collection. uId: Test."
@@ -351,39 +410,6 @@ namespace ImageFlipperTest
             #region ASSERT
             #endregion ASSERT
         }
-        /// <summary>
-        /// Test ImageStorage RetrieveImage() method in normal conditions:
-        /// - uId = "Test".
-        /// - expected response is "SERVER: Image retrieved from collection. uId: Test."
-        /// </summary>
-        [TestMethod]
-        public void RetrieveImageTestNormal()
-        {
-            #region ARRANGE
-            #endregion ARRANGE
 
-            #region ACT
-            #endregion ACT
-
-            #region ASSERT
-            #endregion ASSERT
-        }
-        /// <summary>
-        /// Test ImageStorage RetrieveImage() method when the uId is not in the list:
-        /// - uId = "NOT_IN_LIST".
-        /// - expected response is "SERVER: Image could not be retrieved from list as the uId could not be found. uId: NOT_IN_LIST."
-        /// </summary>
-        [TestMethod]
-        public void RetrieveImageTestElementNotFound()
-        {
-            #region ARRANGE
-            #endregion ARRANGE
-
-            #region ACT
-            #endregion ACT
-
-            #region ASSERT
-            #endregion ASSERT
-        }
     }
 }
