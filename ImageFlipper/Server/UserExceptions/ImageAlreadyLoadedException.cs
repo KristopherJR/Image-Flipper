@@ -8,25 +8,24 @@ using System.Threading.Tasks;
 /// Author: Kristopher Randle
 /// Version: 0.1, 04-12-21
 /// </summary>
-namespace Main.UserExceptions
+namespace Server.UserExceptions
 {
     /// <summary>
     /// The user-defined ElementNotFoundException. This will be thrown when an element in a collection class can not be found.
     /// </summary>
-    public class ElementNotFoundException : Exception
+    public class ImageAlreadyLoadedException : Exception
     {
         /// <summary>
-        /// Default constructor for ElementNotFoundException.
+        /// Default constructor for ImageAlreadyLoadedException.
         /// </summary>
-        public ElementNotFoundException()
+        public ImageAlreadyLoadedException()
         {
         }
-
         /// <summary>
-        /// Overloaded constructor for ElementNotFoundException. Allows an error-message to be provided.
+        /// Overloaded constructor for ImageAlreadyLoadedException. Allows an error-message to be provided.
         /// </summary>
         /// <param name="pErrorMessage">The error message to be printed to the user when the exception is thrown, passed to the parent class.</param>
-        public ElementNotFoundException(string pErrorMessage) : base(pErrorMessage)
+        public ImageAlreadyLoadedException(string pErrorMessage) : base(pErrorMessage)
         {
         }
     }

@@ -15,3 +15,6 @@ C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\obj\Debug\Ima
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\obj\Debug\ImageFlipperTest.csproj.CopyComplete
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\obj\Debug\ImageFlipperTest.dll
 C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\obj\Debug\ImageFlipperTest.pdb
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Server.dll
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Server.pdb
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Server.dll.config

@@ -45,6 +45,9 @@
     <Compile Include="ImageStorage.cs" />
     <Compile Include="IServer.cs" />
     <Compile Include="Server.cs" />
+    <Compile Include="UserExceptions\ElementNotFoundException.cs" />
+    <Compile Include="UserExceptions\ImageAlreadyLoadedException.cs" />
+    <Compile Include="UserExceptions\InvalidParameterException.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Drawing" />
