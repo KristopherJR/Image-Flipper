@@ -20,6 +20,11 @@ namespace Client
         /// </summary>
         PictureBox SelectedPictureBox { get; }
 
+        /// <summary>
+        /// Used to subscribe the ImageGallery to delegates.
+        /// </summary>
+        /// <param name="pSendPathToServer">The SendPathToServerDelegate</param>
+        /// <param name="pPrimeEditor">The PrimeEditor Delegate</param>
         void Subscribe(SendPathToServerDelegate pSendPathToServer, PrimeEditorDelegate pPrimeEditor);
 
         /// <summary>

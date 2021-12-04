@@ -24,6 +24,7 @@ namespace ImageFlipperTest
             // CREATE a new ImageGallery:
             ImageGallery imageGallery = new ImageGallery();
             // TRY to add the same image twice:
+
             // CATCH an exception if one is thrown:
         }
     }

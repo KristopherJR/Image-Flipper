@@ -1,0 +1,17 @@
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\ImageFlipperTest.dll
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\ImageFlipperTest.pdb
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Client.dll
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Client.pdb
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Client.dll.config
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\obj\Debug\ImageFlipperTest.csproj.AssemblyReference.cache
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\obj\Debug\ImageFlipperTest.csproj.CoreCompileInputs.cache
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\obj\Debug\ImageFlipperTest.csproj.CopyComplete
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\obj\Debug\ImageFlipperTest.dll
+C:\Users\krist\Desktop\Image-Flipper\ImageFlipper\ImageFlipperTest\obj\Debug\ImageFlipperTest.pdb

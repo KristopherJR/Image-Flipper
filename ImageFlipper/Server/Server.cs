@@ -98,7 +98,6 @@ namespace Server
         {
             // FLIP the image horizontally via the image handler and save the change in the servers storage:
             _imageStorage.Images[pUid] = _imageHandler.FlipImageHorizontal(_imageStorage.Images[pUid]);
-
         }
         /// <summary>
         /// Flip the image specified by 'pUid' vertically.

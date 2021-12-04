@@ -44,12 +44,33 @@ namespace Client
             }
         }
         #endregion
-        public ImageEditor(RotateImageClockwiseDelegate pRCW,
-                           RotateImageCounterClockwiseDelegate pRCCW,
-                           FlipImageHorizontalDelegate pFIH,
-                           FlipImageVerticalDelegate pFIV,
-                           SaveImageDelegate pSaveImage,
-                           SaveImageCopyDelegate pSaveImageCopy)
+        public ImageEditor()
+        {
+            ControlBox = false;
+            InitializeComponent();
+            
+        }
+
+        private void ImageEditor_Load(object sender, EventArgs e)
+        {
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        /// <summary>
+        /// Used to subscribe the ImageEditor to its delegates.
+        /// </summary>
+        /// <param name="pRCW">The RotateImageClockwiseDelegate.</param>
+        /// <param name="pRCCW">The RotateImageCounterClockwiseDelegate</param>
+        /// <param name="pFIH">The FlipImageHorizontalDelegate</param>
+        /// <param name="pFIV">The FlipImageVerticalDelegate</param>
+        /// <param name="pSaveImage">The SaveImage Delegate</param>
+        /// <param name="pSaveImageCopy">The SaveImageCopy Delegate</param>
+        public void Subscribe(RotateImageClockwiseDelegate pRCW,
+                               RotateImageCounterClockwiseDelegate pRCCW,
+                               FlipImageHorizontalDelegate pFIH,
+                               FlipImageVerticalDelegate pFIV,
+                               SaveImageDelegate pSaveImage,
+                               SaveImageCopyDelegate pSaveImageCopy)
         {
             // SUBSCRIBE to the delegates:
             _RotateImageClockwise = pRCW;
@@ -58,13 +79,6 @@ namespace Client
             _FlipImageVertical = pFIV;
             _saveImage = pSaveImage;
             _saveImageCopy = pSaveImageCopy;
-            ControlBox = false;
-            InitializeComponent();
-            
-        }
-        private void ImageEditor_Load(object sender, EventArgs e)
-        {
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void RotateClockwiseButton_Click(object sender, EventArgs e)

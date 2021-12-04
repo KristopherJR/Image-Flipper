@@ -24,25 +24,32 @@ namespace Client
         private IList<String> _imageIds;
         #endregion
         #region PROPERTIES
+        /// <summary>
+        /// Property for ImageGallery.
+        /// </summary>
         public IImageGallery ImageGallery
         {
             get { return _imageGallery; }
         }
-
+        /// <summary>
+        /// Property for ImageEditor
+        /// </summary>
         public IImageEditor ImageEditor
         {
             get { return _imageEditor; }
         }
-
+        /// <summary>
+        /// Propery for ImageIds
+        /// </summary>
         public IList<String> ImageIds
         {
             get { return _imageIds; }
             set { _imageIds = value; }
         }
-
         #endregion
         public Client()
         {
+            // INITIALISE the _imageIds list:
             _imageIds = new List<String>();
         }
         /// <summary>
@@ -54,8 +61,10 @@ namespace Client
             // INITIALISE the _imageGallery:
             _imageGallery = new ImageGallery();
             _imageGallery.Subscribe(pSendPathToServer, PrimeEditor);
-            _imageEditor = new ImageEditor(pRCW, pRCCW, pFIH, pFIV, pSaveImage, pSaveImageCopy);
-            // RETURN it as a form to start the application:
+            // INITIALISE the _imageEditor:
+            _imageEditor = new ImageEditor();
+            _imageEditor.Subscribe(pRCW, pRCCW, pFIH, pFIV, pSaveImage, pSaveImageCopy);
+            // RETURN the ImageGallery as a form to start the application:
             return _imageGallery as Form;
         }
         /// <summary>
@@ -68,7 +77,11 @@ namespace Client
             _imageGallery.AddImage(pPictureBoxID, pImage);
             _imageIds.Add(pPictureBoxID);
         }
-
+        /// <summary>
+        /// Delegate method called from ImageGallery. Primes the Editor by passing the selecting image to the ImageEditor.
+        /// </summary>
+        /// <param name="pSelectedImage">The Image the user selected in the Gallery.</param>
+        /// <param name="pSelectedImageUid">The uId of the image the user selected in the Gallery.</param>
         public void PrimeEditor(Image pSelectedImage, String pSelectedImageUid)
         {
             _imageEditor.EditImage = pSelectedImage;
