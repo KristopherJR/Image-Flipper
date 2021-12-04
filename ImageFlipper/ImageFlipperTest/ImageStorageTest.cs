@@ -3,6 +3,7 @@ using Server;
 using Server.UserExceptions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 /// <summary>
 /// Author: Kristopher Randle & Marc Price
@@ -43,7 +44,6 @@ namespace ImageFlipperTest
             {
                 imageStorage.Add(imagePaths);
             }
-
             #endregion ACT
 
             #region ASSERT
@@ -147,7 +147,8 @@ namespace ImageFlipperTest
         /// <summary>
         /// Test ImageStorage Add() method when the path provided is valid:
         /// - ImagePath = "FishAssets\JavaFish.png".
-        /// - expected response is "SERVER: Image (" + path + ") succesfully loaded from path and added to storage."
+        /// - expected response is an InvalidParameterException with the message:
+        ///   "SERVER: Image (" + path + ") succesfully loaded from path and added to storage."
         /// - PASS condition: Exception is not thrown when the path is valid.
         /// - FAIL condition: Exception is thrown when the path is valid.
         /// </summary>
@@ -189,7 +190,8 @@ namespace ImageFlipperTest
         /// <summary>
         /// Test ImageStorage Add() method when the path provided is invalid:
         /// - ImagePath = "HAHAHASOFAKE.jpg".
-        /// - expected response is "SERVER: The path (" + path + ") is not in a valid format. Valid paths should reference a .PNG image and contain " + @"\.""
+        /// - expected response is an InvalidParameterException with the message:
+        ///   "SERVER: The path (" + path + ") is not in a valid format. Valid paths should reference a .PNG image and contain " + @"\.""
         /// - PASS condition: Exception is thrown when the path is invalid.
         /// - FAIL condition: Exception is not thrown when the path is invalid.
         /// </summary>
@@ -231,7 +233,10 @@ namespace ImageFlipperTest
         /// <summary>
         /// Test ImageStorage Add() method when the user tries to load an image they have already loaded:
         /// - ImagePath = "FishAssets\JavaFish.png".
-        /// - expected response is "SERVER: Image (" + path + ") has already been loaded into the collection. You can not load it twice."
+        /// - expected response is an ImageAlreadyLoadedException with the message:
+        ///   "SERVER: Image (" + path + ") has already been loaded into the collection. You can not load it twice."
+        /// - PASS condition: Exception is thrown when the user tries to load an image they have already loaded.
+        /// - FAIL condition: Exception is not thrown when the user tries to load an image they have already loaded.
         /// </summary>
         [TestMethod]
         public void AddTestImageAlreadyLoaded()
@@ -241,54 +246,75 @@ namespace ImageFlipperTest
             ImageStorage imageStorage = new ImageStorage();
             // INSTANTIATE an IList, call it imagePaths:
             IList<String> imagePaths = new List<String>();
+            // POPULATE imagePaths with 2 identical paths:
+            imagePaths.Add(@"FishAssets\JavaFish.png");
+            imagePaths.Add(@"FishAssets\JavaFish.png");
             #endregion ARRANGE
 
             #region ACT
+            // CALL the Add() method and pass in the imagePaths in a try-catch:
+            try
+            {
+                imageStorage.Add(imagePaths);
+            }
             #endregion ACT
 
             #region ASSERT
-            #endregion ASSERT
-        }
-        /// <summary>
-        /// Test ImageStorage Add() method when the path provided is not in a valid format:
-        /// - ImagePath = "fakePath!".
-        /// - expected response is "SERVER: The provided path: x is not a valid image path format."
-        /// </summary>
-        [TestMethod]
-        public void AddTestInvalidParameterFormat()
-        {
-            #region ARRANGE
-            // INSTANTIATE ImageStorage:
-            ImageStorage imageStorage = new ImageStorage();
-            // INSTANTIATE an IList, call it imagePaths:
-            IList<String> imagePaths = new List<String>();
-            #endregion ARRANGE
-
-            #region ACT
-            #endregion ACT
-
-            #region ASSERT
+            // CATCH the exception and print the error message:
+            catch (ImageAlreadyLoadedException e)
+            {
+                // PRINT the exception message:
+                Console.WriteLine(e.Message);
+                // PASS test if an exception is thrown when the user tries to load the same image twice:
+                Assert.IsTrue(true);
+                // RETURN so that the test doesn't reach the fail statement:
+                return;
+            }
+            // FAIL the test if the program does not throw an exception with a valid path:
+            Assert.IsFalse(true, "The program did not throw an exception when the user tried to load the same image twice.");
             #endregion ASSERT
         }
         /// <summary>
         /// Test ImageStorage Add() method when the path provided is in a valid format but the image can not be found on disk:
-        /// - ImagePath = "\Image-Flipper\ImageFlipper\Client\NOT-AN-ACTUAL-IMAGE.png".
-        /// - expected response is "SERVER: File could not be loaded from path. The file does not exist."
+        /// - ImagePath = "FishAssets\NOT-AN-ACTUAL-IMAGE.png".
+        /// - expected response is a FileNotFoundException with the message:
+        ///   "SERVER: Image (" + path + ") could not be loaded from path. The file does not exist."
+        /// - PASS condition: Exception is thrown when the user tries to load an image they have already loaded.
+        /// - FAIL condition: Exception is not thrown when the user tries to load an image they have already loaded.
         /// </summary>
         [TestMethod]
-        public void AddTestFileNotFoundException()
+        public void AddTestFileNotFound()
         {
             #region ARRANGE
             // INSTANTIATE ImageStorage:
             ImageStorage imageStorage = new ImageStorage();
             // INSTANTIATE an IList, call it imagePaths:
             IList<String> imagePaths = new List<String>();
+            // POPULATE imagePaths with a valid path that doesn't resolve to a real file:
+            imagePaths.Add(@"FishAssets\NOT-AN-ACTUAL-IMAGE.png");
             #endregion ARRANGE
 
             #region ACT
+            // CALL the Add() method and pass in the imagePaths in a try-catch:
+            try
+            {
+                imageStorage.Add(imagePaths);
+            }
             #endregion ACT
 
             #region ASSERT
+            // CATCH the exception and print the error message:
+            catch (FileNotFoundException e)
+            {
+                // PRINT the exception message:
+                Console.WriteLine(e.Message);
+                // PASS test if an exception is thrown when the user tries to load an image that doesn't exist:
+                Assert.IsTrue(true);
+                // RETURN so that the test doesn't reach the fail statement:
+                return;
+            }
+            // FAIL the test if the program does not throw an exception when the user tries to load an image that doesn't exist:
+            Assert.IsFalse(true, "The program did not throw an exception when the user tried to load an image that doesn't exist.");
             #endregion ASSERT
         }
         /// <summary>

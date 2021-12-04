@@ -43,6 +43,7 @@ namespace Server
                 // ITERATE through the IList:
                 foreach (String path in pImagePaths)
                 {
+                    // CHECK that the path points to a .PNG image and that it contains back-slashes:
                     if(path.EndsWith(".png") && path.Contains(@"\"))
                     {
                         // IF the list contains an image path that has already been loaded:
@@ -61,7 +62,10 @@ namespace Server
                             }
                             catch (FileNotFoundException e)
                             {
-                                Console.WriteLine("SERVER: Image (" + path + ") could not be loaded from path. The file does not exist.");
+                                // PRINT the error message:
+                                Console.WriteLine(e.Message);
+                                // THROW the new exception for unit testing:
+                                throw new FileNotFoundException("SERVER: Image (" + path + ") could not be loaded from path. The file does not exist.");
                             }
                         }
                     }
