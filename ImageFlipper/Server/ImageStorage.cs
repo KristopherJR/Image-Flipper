@@ -3,12 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+/// <summary>
+/// Author: Kristopher Randle
+/// Version: 0.6, 05-12-21
+/// </summary>
 namespace Server
 {
+    /// <summary>
+    /// Class ImageStorage. Acts as the Server main storage unit.
+    /// </summary>
     public class ImageStorage : IImageStorage
     {
         #region FIELDS
@@ -17,7 +21,7 @@ namespace Server
         #endregion
 
         #region PROPERTIES
-        // Returns the dictionary of all images currently loaded into storage.
+        // Declare a get-only property for _images. Returns the dictionary of all images currently loaded into storage.
         public Dictionary<string, Image> Images
         {
             get { return _images; }
@@ -71,18 +75,24 @@ namespace Server
                     }
                     else
                     {
+                        // THROW an InvalidParameterException if the provided path is not in a proper format:
                         throw new InvalidParameterException("SERVER: The path (" + path + ") is not in a valid format. Valid paths should reference a .PNG image and contain " + @"\.");
                     }
                 }
             }
+            // IF the provided paths aren't in an acceptable range:
             else
             {
+                // IF there are more than 10 paths:
                 if(pImagePaths.Count > 10)
                 {
+                    // THROW a new InvalidParameterException stating there can't be more than 10 paths:
                     throw new InvalidParameterException("SERVER: List contains too many paths (Strings). The maximum amount of paths is 10. Current path count: " + pImagePaths.Count + ".");
                 }
+                // IF there are less than 1 path:
                 if(pImagePaths.Count < 1)
                 {
+                    // THROW a new InvalidParameterException stating there can't be less than 1 path:
                     throw new InvalidParameterException("SERVER: List contains too few paths (Strings). List must contain at least 1 path. Current path count: " + pImagePaths.Count + ".");
                 }
             }
@@ -103,6 +113,7 @@ namespace Server
         /// <returns>The image in the dictionary with the specified key.</returns>
         public Image RetrieveImage(String pUid)
         {
+            // IF the requested image has been loaded into storage:
             if(_images.ContainsKey(pUid))
             {
                 // GRAB the image from the dictionary:
@@ -114,9 +125,9 @@ namespace Server
             }
             else
             {
+                // THROW an ElementNotFoundException if the requested image has not been loaded into storage:
                 throw new ElementNotFoundException("SERVER: Image could not be retrieved as the uId (" + pUid + ") could not be found in the list.");
-            }
-            
+            }      
         }
     }
 }

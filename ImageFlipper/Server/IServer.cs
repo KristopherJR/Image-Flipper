@@ -47,6 +47,5 @@ namespace Server
         /// <param name="pUid">the unique identifier for the image to be flipped</param>
         /// <returns>void</returns>
         void VerticalFlipImage(String pUid);
-		
     }
 }

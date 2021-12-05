@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 /// <summary>
 /// Author: Kristopher Randle
@@ -20,6 +16,7 @@ namespace Server.UserExceptions
         /// </summary>
         public ElementNotFoundException()
         {
+            // Do nothing
         }
 
         /// <summary>
@@ -28,6 +25,7 @@ namespace Server.UserExceptions
         /// <param name="pErrorMessage">The error message to be printed to the user when the exception is thrown, passed to the parent class.</param>
         public ElementNotFoundException(string pErrorMessage) : base(pErrorMessage)
         {
+            // Do nothing
         }
     }
 }

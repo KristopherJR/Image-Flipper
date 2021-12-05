@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
+/// <summary>
+/// Author: Kristopher Randle
+/// Version: 0.2, 03-12-21
+/// </summary>
 namespace Server
 {
     /// <summary>
-    /// Author: Kristopher Randle
-    /// Version: 0.1, 03-12-21
+    /// Interface for ImageHandler.
     /// </summary>
     public interface IImageHandler
     {

@@ -3,7 +3,6 @@ using System;
 using Server;
 using System.Collections.Generic;
 using Server.UserExceptions;
-using System.Drawing;
 
 /// <summary>
 /// Author: Kristopher Randle & Marc Price

@@ -2,18 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+/// <summary>
+/// Author: Kristopher Randle
+/// IServer Author: Dr Marc Price
+/// Version: 0.7, 05-12-21
+/// </summary>
 namespace Server
 {
     /// <summary>
-    /// Server acts as the business logic for the ImageFlipper program. It performs the manipulation tasks and provides storage for the assets.
-    /// 
-    /// Author: Kristopher Randle
-    /// IServer Author: Dr Marc Price
-    /// Version 0.3, 04-12-21
+    /// Class Server. Acts as the business logic for the ImageFlipper program. It performs the manipulation tasks and provides storage for the assets.
     /// </summary>
     public class Server : IServer
     {
@@ -23,11 +21,14 @@ namespace Server
         // DECLARE an IImageHandler, call it _imageHandler:
         private IImageHandler _imageHandler;
         #endregion
+
         #region PROPERTIES
+        // DECLARE a get-only property for ImageStorage:
         public IImageStorage ImageStorage
         {
             get { return _imageStorage; }
         }
+        // DECLARE a get-only property for ImageHandler:
         public IImageHandler ImageHandler
         {
             get { return _imageHandler; }
@@ -107,6 +108,7 @@ namespace Server
         /// <returns>void</returns>
         public void RotateImage(string pUid)
         {
+            // IF the image with the specified uId is in the collection:
             if(_imageStorage.Images.ContainsKey(pUid))
             {
                 // ROTATE the image clockwise via the image handler and save the change in the servers storage:
@@ -114,6 +116,7 @@ namespace Server
             }
             else
             {
+                // ELSE, throw an ElementNotFoundException with an error message:
                 throw new ElementNotFoundException("SERVER: An image with the specified uId (" + pUid + ") could not be found in the Servers image storage.");
             }
         }
@@ -125,6 +128,7 @@ namespace Server
         /// <returns>void</returns>
         public void RotateImageCounterClockwise(string pUid)
         {
+            // IF the image with the specified uId is in the collection:
             if (_imageStorage.Images.ContainsKey(pUid))
             {
                 // ROTATE the image counter clockwise via the image handler and save the change in the servers storage:
@@ -132,6 +136,7 @@ namespace Server
             }
             else
             {
+                // ELSE, throw an ElementNotFoundException with an error message:
                 throw new ElementNotFoundException("SERVER: An image with the specified uId (" + pUid + ") could not be found in the Servers image storage.");
             }
         }
@@ -142,6 +147,7 @@ namespace Server
         /// <returns>void</returns>
         public void HorizontalFlipImage(string pUid)
         {
+            // IF the image with the specified uId is in the collection:
             if (_imageStorage.Images.ContainsKey(pUid))
             {
                 // FLIP the image horizontally via the image handler and save the change in the servers storage:
@@ -149,6 +155,7 @@ namespace Server
             }
             else
             {
+                // ELSE, throw an ElementNotFoundException with an error message:
                 throw new ElementNotFoundException("SERVER: An image with the specified uId (" + pUid + ") could not be found in the Servers image storage.");
             }
         }
@@ -159,6 +166,7 @@ namespace Server
         /// <returns>void</returns>
         public void VerticalFlipImage(string pUid)
         {
+            // IF the image with the specified uId is in the collection:
             if (_imageStorage.Images.ContainsKey(pUid))
             {
                 // FLIP the image vertically via the image handler and save the change in the servers storage:
@@ -166,6 +174,7 @@ namespace Server
             }
             else
             {
+                // ELSE, throw an ElementNotFoundException with an error message:
                 throw new ElementNotFoundException("SERVER: An image with the specified uId (" + pUid + ") could not be found in the Servers image storage.");
             }
         }
