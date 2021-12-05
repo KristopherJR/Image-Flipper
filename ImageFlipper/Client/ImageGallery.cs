@@ -91,8 +91,8 @@ namespace Client
                 _previouslySelectedPictureBox = clickedBox;
                 // SET the colour of the selected box to green:
                 _selectedPictureBox.BackColor = Color.FromArgb(142, 205, 117);
-                // PRINT #1 for debugging:
-                Console.WriteLine("#1");
+                // PRINT a message for debugging:
+                Console.WriteLine("CLIENT: Image Selected.");
                 // BREAK the method execution by returning:
                 return;
             }
@@ -107,8 +107,8 @@ namespace Client
                 _previouslySelectedPictureBox.BackColor = Color.Empty;
                 // SET the colour of the newly selected box to green:
                 _selectedPictureBox.BackColor = Color.FromArgb(142, 205, 117);
-                // PRINT #2 for debugging:
-                Console.WriteLine("#2");
+                // PRINT a message for debugging:
+                Console.WriteLine("CLIENT: Selected Image Updated.");
                 // BREAK the method execution by returning:
                 return;
             }
@@ -121,8 +121,8 @@ namespace Client
                 _selectedPictureBox = null;
                 // SET the previously selected box to null:
                 _previouslySelectedPictureBox = null;
-                // PRINT #3 for debugging:
-                Console.WriteLine("#3");
+                // PRINT a message for debugging:
+                Console.WriteLine("CLIENT: Image Deselected.");
             }  
         }
 
@@ -165,7 +165,7 @@ namespace Client
                 else
                 {
                     // IF the user already added that image, give them an error message:
-                    Console.WriteLine("Sorry, you've already added that image! blub!");
+                    Console.WriteLine("CLIENT: Sorry, you've already added that image! blub!");
                 } 
             }
         }
@@ -200,7 +200,7 @@ namespace Client
             if(_selectedPictureBox == null)
             {
                 // OUTPUT an error instructing the user to select an image first:
-                Console.WriteLine("Click an image first that you wish to edit.");
+                Console.WriteLine("CLIENT: Click an image first that you wish to edit.");
             }
             else
             {
