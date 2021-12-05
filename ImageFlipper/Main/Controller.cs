@@ -41,10 +41,10 @@ namespace Main
         /// <param name="pImagePaths">A List of the image paths to be sent to the server to be loaded.</param>
         public void SendPathToServer(IList<String> pImagePaths)
         {
-            // CALL the Servers Load() method and pass in the paths parameter:
-            _server.Load(pImagePaths);
+            // CALL the Servers Load() method and pass in the paths parameter, store the return in an IList<String> called imageIds:
+            IList<String> imageIds = _server.Load(pImagePaths);
             // TRIGGER a callback and provided the client with the loaded image from the server:
-            foreach(String id in pImagePaths)
+            foreach(String id in imageIds)
             {
                 // ADD the Scaled Image to the client by requesting the Images id from the Servers loaded collection:
                 _client.AddImage(id, _server.GetImage(id, 150, 150));
