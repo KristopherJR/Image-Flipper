@@ -2,19 +2,16 @@
 using Server;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
+/// <summary>
+/// Author: Kristopher Randle
+/// Version: 0.5, 05-12-21
+/// </summary>
 namespace Main
 {
     /// <summary>
-    /// Main controller class for ImageFlipper.
-    /// 
-    /// Author: Kristopher Randle
-    /// Version: 0.1, 02-12-21
+    /// Main controller class for ImageFlipper. Acts as the communicated intermediary between the client and server and sets up the program.
     /// </summary>
     public class Controller
     {
@@ -27,45 +24,74 @@ namespace Main
 
         #region PROPERTIES
         #endregion
-
+        /// <summary>
+        /// Constructor for Controller.
+        /// </summary>
         public Controller()
         {
             // INITALISE the client and server:
             _client = new Client.Client();
             _server = new Server.Server();
-            // RUN the application by calling the clients run method:
+            // RUN the application by calling the clients run method and pass in the required delegates:
             Application.Run(_client.Run(SendPathToServer, RotateImageClockwise, RotateImageCounterClockwise, FlipImageHorizontal, FlipImageVertical, SaveImage, SaveImageCopy));
         }
-
+        /// <summary>
+        /// Delegate method for SendPathToServerDelegate. Called from ImageGallery when the user tries to load an Image.
+        /// </summary>
+        /// <param name="pImagePaths">A List of the image paths to be sent to the server to be loaded.</param>
         public void SendPathToServer(IList<String> pImagePaths)
         {
+            // CALL the Servers Load() method and pass in the paths parameter:
             _server.Load(pImagePaths);
-            // TRIGGER a callback and provided the client with the loaded image from the serveR:
+            // TRIGGER a callback and provided the client with the loaded image from the server:
             foreach(String id in pImagePaths)
             {
+                // ADD the Scaled Image to the client by requesting the Images id from the Servers loaded collection:
                 _client.AddImage(id, _server.GetImage(id, 150, 150));
             }
         }
-
+        /// <summary>
+        /// Delegate method for FlipImageHorizontalDelegate. Called from ImageEditor when the user clicks the FlipImageHorizontal Button.
+        /// </summary>
+        /// <param name="pUid">The unique identifier of the image in the Servers storage to be flipped.</param>
         public void FlipImageHorizontal(string pUid)
         {
-            (_server as Server.Server).HorizontalFlipImage(pUid);
+            // CALL the Server HorizontalFlipImage Method and pass in the uId of the image to flip:
+            _server.HorizontalFlipImage(pUid);
+            // UPDATE the clients ImageEditors Image by requesting the edited, scaled-image back from the server:
             _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
         }
+        /// <summary>
+        /// Delegate method for FlipImageVerticalDelegate. Called from ImageEditor when the user clicks the FlipImageVertical Button.
+        /// </summary>
+        /// <param name="pUid">The unique identifier of the image in the Servers storage to be flipped.</param>
         public void FlipImageVertical(string pUid)
         {
-            (_server as Server.Server).VerticalFlipImage(pUid);
+            // CALL the Server VerticalFlipImage Method and pass in the uId of the image to flip:
+            _server.VerticalFlipImage(pUid);
+            // UPDATE the clients ImageEditors Image by requesting the edited, scaled-image back from the server:
             _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
         }
+        /// <summary>
+        /// Delegate method for RotateImageClockwiseDelegate. Called from ImageEditor when the user clicks the RotateImageClockwise Button.
+        /// </summary>
+        /// <param name="pUid">The unique identifier of the image in the Servers storage to be rotated.</param>
         public void RotateImageClockwise(string pUid)
         {
-            Console.WriteLine("delegate fired!!!");
+            // CALL the Server RotateImage Method and pass in the uId of the image to rotate:
             _server.RotateImage(pUid);
+            // UPDATE the clients ImageEditors Image by requesting the edited, scaled-image back from the server:
             _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
         }
+        /// <summary>
+        /// Delegate method for RotateImageCounterClockwiseDelegate. Called from ImageEditor when the user clicks the RotateImageCounterClockwise Button.
+        /// </summary>
+        /// <param name="pUid">The unique identifier of the image in the Servers storage to be rotated.</param>
         public void RotateImageCounterClockwise(string pUid)
         {
+            // CALL the Server RotateImageCounterClockwise Method and pass in the uId of the image to rotate:
             (_server as Server.Server).RotateImageCounterClockwise(pUid);
+            // UPDATE the clients ImageEditors Image by requesting the edited, scaled-image back from the server:
             _client.ImageEditor.EditImage = _server.GetImage(pUid, 300, 300);
         }
         /// <summary>
