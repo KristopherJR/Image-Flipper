@@ -187,7 +187,7 @@ namespace Client
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ImageEditor";
-            this.Text = "ImageEditor";
+            this.Text = "Image Editor";
             this.Load += new System.EventHandler(this.ImageEditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
